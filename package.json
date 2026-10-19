@@ -1,0 +1,22 @@
+{
+  "name": "schoolos",
+  "version": "1.0.0",
+  "description": "a full school management system, that handles  everything your school needs.",
+  "homepage": "https://github.com/mumuniazeez/schoolos#readme",
+  "bugs": {
+    "url": "https://github.com/mumuniazeez/schoolos/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumuniazeez/schoolos.git"
+  },
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "concurrently": "^10.0.6",
+    "dotenv": "^18.0.8"
+  }
+}
