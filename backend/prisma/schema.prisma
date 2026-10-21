@@ -4,7 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -89,8 +89,11 @@ model User {
 
   role UserRole
 
-  school   School @relation(fields: [schoolId], references: [id])
-  schoolId String
+  school    School    @relation(fields: [schoolId], references: [id])
+  schoolId  String
+  staffs    Staff?
+  students  Student?
+  guardians Guardian?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -121,7 +124,10 @@ model Staff {
 
   role        String
   phoneNumber String
-  classes     Class[]
+
+  userId  String  @unique
+  user    User    @relation(fields: [userId], references: [id])
+  classes Class[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -139,6 +145,8 @@ model Student {
   guardianModelId String
   class           Class    @relation(fields: [classId], references: [id])
   classId         String
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -153,9 +161,17 @@ model Guardian {
   relationship GuardianRelationship
 
   students Student[]
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("guardians")
+}
+
+model Announcement {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
