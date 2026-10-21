@@ -33,7 +33,7 @@ export default function Header() {
             </div>
             
         </div>
-        <header className="w-full px-4 py-2 border border-zinc-200 sticky top-0">
+        <header className="w-full px-4 py-2 bg-white z-50 border border-zinc-200 sticky top-0">
             <div className="w-full flex items-center justify-between">
                    <div className="flex items-center">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-xs bg-zinc-900 text-white dark:bg-white dark:text-black transition-colors">

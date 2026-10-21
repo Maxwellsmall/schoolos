@@ -1,6 +1,9 @@
+"use client"
+
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import SchoolOsPreview from "@/components/SchoolOSPortalPreview"
 
 
 export default function Hero() {
@@ -25,6 +28,23 @@ export default function Hero() {
                     Explore Form Tutor Gradebook
                 </Button>
             </div>
+
+                <div className="flex items-center gap-3 max-w-6xl">
+                    <span>Instant Role Demos: </span>
+                    <span className="underline text-zinc-600 hover:cursor-pointer hover:text-blue-900">Root Platform Owner </span>
+                    <span>·</span>
+                    <span className="underline text-zinc-500 hover:cursor-pointer hover:text-blue-500">Super Admin (Principal) Students</span>
+                    <span>·</span>
+                    <span className="underline text-zinc-500 hover:cursor-pointer hover:text-blue-500">Bursar / Registra</span>
+                    <span>·</span>
+                    <span className="underline text-zinc-500 hover:cursor-pointer hover:text-blue-500">Teacher (Roll Call)</span>
+                     <span>·</span>
+                    <span className="underline text-zinc-500 hover:cursor-pointer hover:text-blue-500">Parent Portal</span>
+                    <span>·</span>
+                    <span className="text-zinc-500 hover:cursor-pointer hover:text-blue-900">Students</span>
+                </div>
+                <SchoolOsPreview/>
+
             </div>
             </>
     )
