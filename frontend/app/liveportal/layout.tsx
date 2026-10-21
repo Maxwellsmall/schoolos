@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
 import Header from "@/components/portal/Header";
+import Sidebar from "@/components/portal/Sidebar";
 
 export default function layout({
     children,
@@ -8,12 +9,14 @@ export default function layout({
     children: React.ReactNode;
 }) {
     return (
-        <div>
+        <div className="flex h-screen flex-col overflow-hidden">
             <Header />
-
-            <main>
-                {children}
-            </main>
+            <div className="flex flex-1 min-h-0 overflow-hidden">
+                <Sidebar />
+                <main className="flex-1 min-w-0 min-h-0 overflow-y-auto">
+                    {children}
+                </main>
+            </div>
         </div>
     )
 }
