@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -10,6 +12,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
       errorMessage:
         'We received to many request from your device, try again later',
     }),
+
+    PrismaModule,
+
+    AuthModule,
   ],
 })
 export class AppModule {}
