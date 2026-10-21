@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 
 
@@ -109,12 +110,14 @@ export default function Header() {
                 <Button className="bg-white cursor-pointer border border-zinc-200 hover:bg-zinc-100 text-black">
                     Root Admin Access
                 </Button>
+                <Link href="/liveportal">
                  <Button className="cursor-pointer">
                     <span>
-                    Enter Live Portal
+                    Enter Live Portal 
                     </span>
                     <ArrowRight/>
                 </Button>
+                </Link>
             </div>
              </div>        
         </header>
