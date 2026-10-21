@@ -10,7 +10,7 @@ export default function Dedicated() {
         {   
             id: "1",
             badge: "Root Platform Owner",
-            headericon: <Shield/>,
+            headericon: <Shield className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "1. Root Admin Portal",
             paragraph: "For software owners and regional education boards managing the entire SaaS multi-tenant infrastructure.",
@@ -26,7 +26,7 @@ export default function Dedicated() {
         {   
             id: "2",
             badge: "Head of School",
-            headericon: <GraduationCap/>,
+            headericon: <GraduationCap className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "2. Principal Super Admin",
             paragraph: "Executive oversight over academic sessions, grading standards, broadsheet approvals, and school settings.",
@@ -42,7 +42,7 @@ export default function Dedicated() {
         {   
             id: "3",
             badge: "Operations & Finances",
-            headericon: <CreditCard/>,
+            headericon: <CreditCard className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "3. Registrar & Bursar Admin",
             paragraph: "Student enrollment admissions, guardian records, fee billing, offline receipt issuance, and staff directory.",
@@ -59,7 +59,7 @@ export default function Dedicated() {
         {   
             id: "4",
             badge: "Classroom Faculty",
-            headericon: <ClipboardList/>,
+            headericon: <ClipboardList className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "4. Teacher Workspace",
             paragraph: "Form class roll call, daily attendance toggles, continuous assessment gradebook, and student remarks.",
@@ -77,7 +77,7 @@ export default function Dedicated() {
          {   
             id: "5",
             badge: "Family & Guidance",
-            headericon: <Users/>,
+            headericon: <Users className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "5. Parent Portal",
             paragraph: "Multi-child switching, morning roll call notification, academic report cards, and online fee payments.",
@@ -95,7 +95,7 @@ export default function Dedicated() {
         {   
             id: "6",
             badge: "Enrolled Learner",
-            headericon: <BookOpen className="w-3 h-3"/>,
+            headericon: <BookOpen className="w-4 h-4"/>,
             featuresicon: <Check className="w-3 h-3 text-green-500"/>,
             header: "6. Student Portal",
             paragraph: "Daily period timetables, class rank standing, subject aggregates, and examination clearance certificates.",
