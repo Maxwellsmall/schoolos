@@ -61,6 +61,21 @@ enum GuardianRelationship {
   family_member
 }
 
+enum AnnouncementTargetAudience {
+  whole_school
+  staff
+  students
+  parent
+  parent_student
+  parent_staff
+  staff_student
+}
+
+enum AnnouncementPriority {
+  normal
+  high
+}
+
 model School {
   id String @id @default(uuid())
 
@@ -72,7 +87,9 @@ model School {
 
   ministryAccreditationNumber String @unique
 
-  users User[]
+  users         User[]
+  classes       Class[]
+  announcements Announcement[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -83,9 +100,10 @@ model School {
 model User {
   id String @id @default(uuid())
 
-  firstName String
-  lastName  String
-  email     String @unique
+  firstName     String
+  lastName      String
+  email         String @unique
+  password_hash String
 
   role UserRole
 
@@ -112,6 +130,8 @@ model Class {
   students      Student[]
   assignedStaff Staff?    @relation(fields: [staffId], references: [id])
   staffId       String?
+  school        School    @relation(fields: [schoolId], references: [id])
+  schoolId      String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -171,7 +191,22 @@ model Guardian {
 }
 
 model Announcement {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
+
+  title          String
+  content        String
+  targetAudience AnnouncementTargetAudience @default(whole_school)
+  priority       AnnouncementPriority
+
+  school   School @relation(fields: [schoolId], references: [id])
+  schoolId String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model Attendance {
+  id String @id @default(uuid())
 }
