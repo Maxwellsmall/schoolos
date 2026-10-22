@@ -95,7 +95,7 @@ export default function Header() {
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
                 : "text-[14px] font-bold text-black cursor-pointer"
               }
-              onClick={() => scrollToSection("Campus")}>Campus</li>
+              onClick={() => scrollToSection("Campus")}>Campus Licensing</li>
                 <li 
                 className={
                   pathname === "/FAQ"
@@ -109,7 +109,7 @@ export default function Header() {
                 <Button className="bg-white cursor-pointer border border-zinc-200 hover:bg-zinc-100 text-black">
                     Root Admin Access
                 </Button>
-                 <Button className="cursor-pointer">
+                 <Button className="cursor-pointer bg-slate-900">
                     <span>
                     Enter Live Portal
                     </span>

@@ -20,6 +20,45 @@ export default function Dedicated() {
                 "Interactive weekly master timetable matrix (Periods 1–7).",
             ],
             subHeader: "Sessions · Terms · Class Arms · Subjects"
+        },
+         {   
+            id: "2",
+            headericon: <Shield className="w-4 h-4"/>,
+            header: "Academic Structure & Calendars",
+            paragraph: `Configure institutional academic sessions, term dates, instructional day quotas, and grade arms (Pearl, Ruby, Gold, Diamond, Blue, Alpha) with room numbers and occupancy progress indicators.
+                       `,
+            features: [
+                "Detailed daily absentee roster with guardian phone numbers.",
+                "Direct parent call logging and medical excuse note attachments.",
+                "Weekly compliance leaderboard and chronic absentee tracking.",
+            ],
+            subHeader: "Sessions · Terms · Class Arms · Subjects"
+        },
+        {   
+            id: "3",
+            headericon: <Shield className="w-4 h-4"/>,
+            header: "Academic Structure & Calendars",
+            paragraph: `Enforce mandatory morning roll call cutoffs. Administrative overview monitors class register compliance in real time with one-click automated SMS reminders to pending form tutors.
+                       `,
+            features: [
+                "Master curriculum catalog with Core vs. Elective subjects.",
+                "Form tutor classroom allocation with capacity constraints.",
+                "Interactive weekly master timetable matrix (Periods 1–7).",
+            ],
+            subHeader: "Sessions · Terms · Class Arms · Subjects"
+        },
+        {   
+            id: "2",
+            headericon: <Shield className="w-4 h-4"/>,
+            header: "Academic Structure & Calendars",
+            paragraph: `Configure institutional academic sessions, term dates, instructional day quotas, and grade arms (Pearl, Ruby, Gold, Diamond, Blue, Alpha) with room numbers and occupancy progress indicators.
+                       `,
+            features: [
+                "Master curriculum catalog with Core vs. Elective subjects.",
+                "Form tutor classroom allocation with capacity constraints.",
+                "Interactive weekly master timetable matrix (Periods 1–7).",
+            ],
+            subHeader: "Sessions · Terms · Class Arms · Subjects"
         }
           
       

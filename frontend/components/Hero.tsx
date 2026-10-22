@@ -18,13 +18,13 @@ export default function Hero() {
                 <p className="text-center mt-4 text-zinc-500 text-[23px] max-w-3xl">A comprehensive campus operations platform connecting platform owners, principals, registrars, form tutors, students, and parents into one unified, role-governed workflow.</p>
 
                    <div className="items-center my-3 gap-3 flex">
-                 <Button className="cursor-pointer py-6 font-bold">
+                 <Button className="cursor-pointer py-6 px-6 font-bold bg-slate-900 hover:bg-slate-800">
                     <span>
                     Launch Principal Executive Portal Now
                     </span>
                     <ArrowRight/>
                 </Button>
-                <Button className="bg-white py-6 cursor-pointer font-bold border border-zinc-200 hover:bg-zinc-100 text-black">
+                <Button className="bg-white py-6 px-6 cursor-pointer font-bold border border-zinc-200 hover:bg-zinc-100 text-black">
                     Explore Form Tutor Gradebook
                 </Button>
             </div>
