@@ -9,6 +9,8 @@ async function bootstrap() {
 
   app.use(helmet);
 
+  app.enableCors({});
+
   app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
