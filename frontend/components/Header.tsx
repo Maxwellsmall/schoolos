@@ -54,7 +54,7 @@ export default function Header() {
                 SchoolOs
               </h2>
               <p className="text-[12px] text-zinc-500/70 dark:text-zinc-400">
-                Multi-Campus Education System
+                Multi-Campus Education Managemen
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function Header() {
                 ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
                 : "text-[14px] font-bold text-black cursor-pointer"
                 }
-                onClick={() => scrollToSection("Architecture")}>Architecture</li>
+                onClick={() => scrollToSection("Architecture")}>Campus Governance</li>
                 <li 
                 className={
                   pathname === "/Roles Portal"
@@ -81,21 +81,28 @@ export default function Header() {
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
                 : "text-[14px] font-bold text-black cursor-pointer"
                 }
-                onClick={() => scrollToSection("Core Modules")}>Core Modules</li>
+                onClick={() => scrollToSection("Core Modules")}>Stakeholder Workspaces</li>
                 <li 
                 className={
                   pathname === "/Security"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
                 : "text-[14px] font-bold text-black cursor-pointer"
                 }
-                onClick={() => scrollToSection("Security")}>Security & RBCA</li>
+                onClick={() => scrollToSection("Security")}>Core Modules</li>
                 <li 
                 className={
                   pathname === "/Campus"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
                 : "text-[14px] font-bold text-black cursor-pointer"
               }
-              onClick={() => scrollToSection("Campus")}>Campus Licensing</li>
+              onClick={() => scrollToSection("Campus")}>Operations</li>
+                              <li 
+                className={
+                  pathname === "/Campus"
+                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[14px] font-bold text-black cursor-pointer"
+              }
+              onClick={() => scrollToSection("Campus")}>Licensing</li>
                 <li 
                 className={
                   pathname === "/FAQ"
@@ -103,11 +110,18 @@ export default function Header() {
                 : "text-[14px] font-bold text-black cursor-pointer"
                 }
                 onClick={() => scrollToSection("FAQ")}>FAQ</li>
+                 <li 
+                className={
+                  pathname === "/FAQ"
+                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[14px] font-bold text-black cursor-pointer"
+                }
+                onClick={() => scrollToSection("FAQ")}>Sign in</li>
             </ul>
             </nav>
             <div className="items-center gap-3 flex">
                 <Button className="bg-white cursor-pointer border border-zinc-200 hover:bg-zinc-100 text-black">
-                    Root Admin Access
+                    Register School
                 </Button>
                  <Button className="cursor-pointer bg-slate-900">
                     <span>

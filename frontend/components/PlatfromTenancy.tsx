@@ -9,27 +9,27 @@ export default function PlatformTenancy() {
     const cardData = [
         {
             id: "1",
-            header: "Autonomous School Isolation",
-            body: "Separate academic calendars, classroom arms, subject assignments, fee structures, and bursary ledgers per school campus without data cross-contamination.",
-            footer: "Apex Academy · Greenfield STEM · St. Jude",
+            header: "Autonomous Campus Partitioning",
+            body: "Independent academic terms, grading standards, subject catalogs, and financial ledgers for every campus without cross-school data pollution.",
+            footer: "Apex International Academy · Greenfield STEM · St. Jude",
             classname: "",
-            icon: <Code2Icon/>
+            icon: <Code2Icon className="text-black w-4 h-4"/>
         }, 
         {
             id: "2",
-            header: "Instant Campus Switcher",
-            body: "Platform executives and regional educational supervisors seamlessly toggle between school campuses from the global topbar without logging in and out.",
-            footer: "Single sign-on · Centralized session management",
+            header: "Seamless Campus Switcher",
+            body: "Board directors and education inspectors switch between institutions from the main navigation without repeated credentials entry.",
+            footer: "Centralized authentication · Role-level audit trails",
             classname: "",
-            icon: <Building2 className="w-6 h-6" />
+            icon: <Building2 className="w-4 h-4 text-black"  />
         }, 
         {
             id: "3",
             header: "Role-Based Data Partitioning",
-            body: "Strict permission boundary ensures teachers see only their assigned class cohorts, while students and parents only ever view their own personal ward records.",
+            body: "Strict permission gates restrict teachers to their assigned classes, while students and parents view only their personal ward records.",
             footer: "Principal · Registrar · Teacher · Parent · Student",
             classname: "",
-            icon: <ShieldCheck className="w-6 h-6" />
+            icon: <ShieldCheck className="w-4 h-4 text-black"  />
         }, 
     ]
         
@@ -37,13 +37,11 @@ export default function PlatformTenancy() {
         <>
         <div id="Architecture" className="w-full flex flex-col items-center justify-center py-12">
             <div className="flex items-start w-full max-w-7xl flex-col px-4">
-                <p className="text-gray-400 font-extrabold">PLATFORM TENANCY & ISOLATION</p>
                 <div>
-                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Engineered for Multi-School Operations</h1>
+                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Engineered for Group and Independent Schools</h1>
                     <p className="text-gray-800 text-[20px] max-w-3xl mb-8">
-                     Run multiple autonomous campuses under a unified 
-                     corporate group or operate as an independent institution. 
-                     Each school campus maintains its own student census, fee 
+                    Run autonomous school campuses under a central corporate board or operate as a standalone institution. Each campus maintains strict data separation
+                     for academic sessions, classroom arms, fee structures, and staff directories.t census, fee 
                      structure, timetable, and grading rules.
                     </p>
                 </div>

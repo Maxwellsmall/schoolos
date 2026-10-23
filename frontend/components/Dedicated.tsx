@@ -117,13 +117,11 @@ export default function Dedicated() {
         <>
         <div id="Roles Portal" className="w-full flex flex-col items-center justify-center py-12">
             <div className="flex items-start w-full max-w-7xl flex-col px-4">
-                <p className="text-gray-400 font-extrabold">DEDICATED STAKEHOLDERS PORTALS</p>
                 <div className="w-full">
-                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Six Tailored Perspectives</h1>
+                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Dedicated Stakeholder Workspaces</h1>
                    <div className="w-full flex items-center justify-between">
                      <p className="text-gray-800 text-[18px] max-w-4xl mb-8">
-                    Every stakeholder logs into a purpose-built workspace calibrated precisely to their responsibilities.
-                    </p>
+                        Six tailored environments designed specifically for the day-to-day responsibilities of school staff, guardians, and students.                    </p>
                     <Button className="bg-white rounded-md hover:bg-zinc-200 border-2 border-zinc-200 text-black" >
                         <span>Test Role switcher in Portal</span>
                         <ArrowRight className="w-3 h-3"/>

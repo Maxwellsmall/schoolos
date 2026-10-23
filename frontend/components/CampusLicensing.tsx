@@ -31,14 +31,14 @@ export default function CampusLicensing() {
         id: "2",
         badge: "Termly Pay-As-You-Grow",
         header: "Standard Term",
-        price: "$0",
-        priceSub: "/ 30 days",
-        paragraph: "Full institutional access to test live academic sessions and roll call.",
+        price: "$2.50",
+        priceSub: "/ students / terms",
+        paragraph: "Ideal for mid-sized private day schools with termly payment schedules.",
         features: [
-            "Up to 300 Enrolled Students",
-            "1 Single Campus Partition",
-            "Teacher Gradebook & Broadsheet",
-            "Parent Portal with Child Switcher"
+            "Up to 800 Enrolled Students",
+            "Up to 3 Linked Campuses",
+            "Online Parent Card Payment Gateway",
+            "Official A4 Report Card PDF Export"
         ],
         buttonText: "Start Free Evaluation",
         isFeatured: false,
