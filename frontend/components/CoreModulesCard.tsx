@@ -1,81 +1,52 @@
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
-
+import React from "react"
 
 interface CoreModulesCardProps {
-    badge: string
     header: string
+    subHeader: string
     headericon: React.ReactNode
     paragraph: string
     features: string[]
-    featuresicon: React.ReactNode
-    buttonText: string
-    isFeatured: boolean
-    isFeaturedBadge: boolean
-
 }
 
-const CoreModulesCard: React.FC<CoreModulesCardProps> = ({badge, headericon, featuresicon, header, paragraph, features, buttonText, isFeatured = false, isFeaturedBadge = false}) => {
-
+const CoreModulesCard: React.FC<CoreModulesCardProps> = ({ 
+    headericon, 
+    header, 
+    paragraph, 
+    features, 
+    subHeader 
+}) => {
     return (
-            <>
-            <div className={`p-6 bg-white shadow-sm transition-all flex flex-col items-center justify-center rounded-xl
-                    ${isFeatured
-                        ? "border-2 border-slate-900 shadow-md"
-                        : "border border-gray-200"
-                    
-                    }
-                `}>
-            <div className={`w-full flex justify-between items-center
-                        ${
-                            isFeatured
-                            ? " text-black"
-                            : " text-slate-700"
-
-                        }
-                `}>
-                <Badge className={`rounded-md bg-blue-950/100 text-white
-                                ${
-                                    isFeaturedBadge
-                                    ? " bg-slate-900"
-                                    : "bg-green-50 text-black"
-                    
-                                }
-                                `}>
-                    {badge}
-                </Badge>
-                <span className="">{headericon}</span>
-            </div>
-            <div className="flex mt-3 flex-col mb-10 justify-center items-start">
-                <h1 className="text-blue-950 font-bold text-[18px]">
-
-                {header}
-                </h1>
-                <p className="text-zinc-500 text-[14px]">{paragraph}</p>
+        <div className="p-6 bg-white border border-gray-200 shadow-sm transition-all flex flex-col items-start justify-between rounded-xl h-full">
+            <div className="w-full flex flex-col">
+              <div className="flex items-center gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
+                      {headericon}
+                  </div>
+                  <div className="flex flex-col">
+                      <h2 className="text-blue-950 font-bold text-[18px] leading-snug">
+                          {header}
+                      </h2>
+                      <span className="text-xs text-gray-400 font-medium mt-0.5">
+                          {subHeader}
+                      </span>
+                  </div>
+              </div>
+                
+              <p className="text-zinc-500 text-[14px] leading-relaxed mb-6">
+                  {paragraph}
+              </p>
             </div>
             
-            <ul className="">
+            <ul className="space-y-2.5 w-full">
                 {features?.map((item, index) => (
-                    <li key={index} className="flex items-start text-xs text-gray-600 gap-2">
-                        <span className="text-zinc-500 mt-1">{featuresicon}</span>
-                        <span className="text-zinc-500 text-[14px]">{item}</span>
+                    <li key={index} className="flex items-start text-xs text-gray-600 gap-2.5">
+                        <div className="bg-slate-900 rounded-full w-1.5 h-1.5 shrink-0 mt-1.5"/>
+                        <span className="text-zinc-500 text-[13px] leading-normal">{item}</span>
                     </li>
-                ))
-
-                }
+                ))}
             </ul>
-            <Button className={`w-full text-white cursor-pointer mt-5 py-3 hover:bg-blue-900 font-bold bg-blue-950/100
-                ${
-                    isFeatured
-                    ? "bg-slate-900 text-white hover:bg-slate-800"
-                    : "bg-white text-slate-800 border border-gray-200 hover:bg-gray-50"
-                }
-                `}>
-                {buttonText}
-            </Button>
-            </div>
-            </>
+        </div>
     )
 }
 
-export default CoreModulesCard
+export default CoreModulesCard;
