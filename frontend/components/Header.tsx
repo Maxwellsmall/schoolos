@@ -64,59 +64,53 @@ export default function Header() {
                 className={
                   pathname === "/Architecture"
                 ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("Architecture")}>Campus Governance</li>
                 <li 
                 className={
-                  pathname === "/Roles Portal"
+                  pathname === "/Stakeholder Workspaces"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
                  }
-                 onClick={() => scrollToSection("Roles Portal")}
-                 > Roles Portals</li>
+                 onClick={() => scrollToSection("Stakeholder Workspaces")}
+                 > Stakeholder Workspaces</li>
                 <li 
                 className={
                   pathname === "/Core Modules"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
                 }
-                onClick={() => scrollToSection("Core Modules")}>Stakeholder Workspaces</li>
+                onClick={() => scrollToSection("Core Modules")}>Core Modules</li>
+           
                 <li 
                 className={
-                  pathname === "/Security"
+                  pathname === "/Operations"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
-                }
-                onClick={() => scrollToSection("Security")}>Core Modules</li>
-                <li 
-                className={
-                  pathname === "/Campus"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400  cursor-pointer"
               }
-              onClick={() => scrollToSection("Campus")}>Operations</li>
+              onClick={() => scrollToSection("Operations")}>Operations</li>
                               <li 
                 className={
                   pathname === "/Campus"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
               }
               onClick={() => scrollToSection("Campus")}>Licensing</li>
                 <li 
                 className={
                   pathname === "/FAQ"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("FAQ")}>FAQ</li>
                  <li 
                 className={
-                  pathname === "/FAQ"
+                  pathname === "/Signin"
                     ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-black cursor-pointer"
+                : "text-[14px] font-bold text-slate-400 cursor-pointer"
                 }
-                onClick={() => scrollToSection("FAQ")}>Sign in</li>
+                onClick={() => scrollToSection("Signin")}>Sign in</li>
             </ul>
             </nav>
             <div className="items-center gap-3 flex">

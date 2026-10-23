@@ -115,7 +115,7 @@ export default function Dedicated() {
      
     return (
         <>
-        <div id="Roles Portal" className="w-full flex flex-col items-center justify-center py-12">
+        <div id="Stakeholder Workspaces" className="w-full flex flex-col items-center justify-center py-12">
             <div className="flex items-start w-full max-w-7xl flex-col px-4">
                 <div className="w-full">
                     <h1 className="text-blue-950 font-bold my-2 text-4xl">Dedicated Stakeholder Workspaces</h1>

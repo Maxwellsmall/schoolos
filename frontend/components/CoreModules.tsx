@@ -41,7 +41,7 @@ export default function Dedicated() {
             paragraph: `Enforce mandatory morning roll call cutoffs. Administrative overview monitors class register compliance in real time with one-click automated SMS reminders to pending form tutors.
                        `,
             features: [
-                "Master curriculum catalog with Core vs. Elective subjects.",
+                "Curriculum subject catalog with Core and Elective classifications.",
                 "Form tutor classroom allocation with capacity constraints.",
                 "Interactive weekly master timetable matrix (Periods 1–7).",
             ],
@@ -69,13 +69,13 @@ export default function Dedicated() {
         <>
         <div id="Core Modules" className="w-full flex flex-col items-center justify-center py-12">
             <div className="flex items-start w-full max-w-7xl flex-col px-4">
-                <p className="text-gray-400 font-extrabold">Complete Functional Coverage</p>
                 <div className="w-full">
-                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Architected for Every Campus Department</h1>
+                    <h1 className="text-blue-950 font-bold my-2 text-4xl">Comprehensive Campus Operations</h1>
                    
                      <p className="text-gray-800 text-[18px] max-w-4xl mb-8">
-                        From academic session calendars to financial bursary collections, explore the purpose-built modules powering day-to-day operations.
-                    </p>
+                        Purpose-built modules handling academic terms, roll call compliance, weighted examination computation, and bursary ledgers.
+
+          </p>
                    
                 </div>
             </div>
