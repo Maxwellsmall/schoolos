@@ -3,6 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { ErrorResponseDto } from './common/dto';
 
 declare const module: any;
 
@@ -26,6 +27,9 @@ async function bootstrap() {
     .setTitle('SchoolOS API Documentation')
     .setDescription('SchoolOS API documentation')
     .setVersion('1.0.0')
+    .addBearerAuth()
+    .addGlobalResponse({ status: '4XX', type: ErrorResponseDto })
+    .addGlobalResponse({ status: '5XX', type: ErrorResponseDto })
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
