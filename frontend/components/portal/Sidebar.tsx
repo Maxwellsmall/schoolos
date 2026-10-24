@@ -13,7 +13,7 @@ export default function Sidebar(){
             <div className="m-5">
                 <p className="text-xs tracking-wider">SUPER ADMIN WORKSPACE</p>
                 <div className="">
-                    <Button variant={"ghost"} className="flex justify-around items-center px-5">
+                    <Button variant={"selected"} className="flex justify-start gap-2 items-center px-5 bg-green-800 w-full">
                             <Building2 />
                             Executive Dashboard
                     </Button>
