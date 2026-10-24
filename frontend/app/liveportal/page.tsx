@@ -48,7 +48,7 @@ export default function () {
                 <Button variant="selected"> <Plus/> Register Student </Button>
             </div>
         </div>
-        <div className="grid grid-rows-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-rows-1 md:grid-cols-4  gap-5">
             <div className="p-5 bg-white border rounded-md">
                 <p className="text-xs text-zinc-500">Total Enrollment</p>
                 <h1 className="text-2xl font-bold">658 students</h1>
@@ -87,9 +87,26 @@ export default function () {
             </div>
             
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
-            <div className="">
-                
+        <div className="grid md:grid-cols-2 gap-5 my-5">
+            <div className="bg-white rounded-md">
+                <div className="flex justify-between m-5 border-b ">
+                    <p className="font-semibold text-xs">$ Recent Fee Inflow Ledger</p>
+                    <Button variant={"ghost"} className="text-xs">View all</Button>
+                </div>
+                <div className="flex justify-around text-xs text-zinc-500 p-3">
+                    <p>STUDENT</p>
+                    <p>AMOUNT</p>
+                    <p>PAYMENT CHANNEL</p>
+                    <p>TIME</p>
+                </div>
+            <div className="flex justify-around text-xs text-zinc-500 p-3">
+                <p>Chinedu Eze (Gr 11)
+            <span className="text-[10px]"> REC-90214 </span>
+            </p>
+            <p>$500.00</p>
+            <p>Direct Bank Transfer</p>
+            <p>Today, 11:40 AM</p>
+            </div>
             </div>
             <div className=""></div>
         </div>
