@@ -1,0 +1,237 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  root_admin
+  school_super_admin
+  school_admin
+  teacher
+  parent
+  student
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum StudentClasses {
+  grade_1
+  grade_2
+  grade_3
+  grade_4
+  grade_5
+  grade_6
+  grade_7
+  grade_8
+  grade_9
+  grade_10
+  grade_11
+  grade_12
+
+  @@map("Classes")
+}
+
+enum StudentClassArm {
+  gold
+  silver
+  blue
+  diamond
+  pearl
+
+  @@map("ClassArm")
+}
+
+enum GuardianRelationship {
+  father
+  mother
+  uncle
+  aunty
+  family_member
+}
+
+enum AnnouncementTargetAudience {
+  whole_school
+  staff
+  students
+  parent
+  parent_student
+  parent_staff
+  staff_student
+}
+
+enum AnnouncementPriority {
+  normal
+  high
+}
+
+enum AttendanceStatus {
+  present
+  absent
+  late
+  excused
+}
+
+model School {
+  id String @id @default(uuid())
+
+  Name        String
+  motto       String
+  phoneNumber String
+  email       String @unique
+  address     String
+
+  ministryAccreditationNumber String @unique
+
+  users         User[]
+  classes       Class[]
+  announcements Announcement[]
+  attendances   Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("schools")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  firstName     String
+  lastName      String
+  email         String @unique
+  password_hash String
+
+  role UserRole
+
+  school    School    @relation(fields: [schoolId], references: [id])
+  schoolId  String
+  staffs    Staff?
+  students  Student?
+  guardians Guardian?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Class {
+  id String @id @default(uuid())
+
+  class         StudentClasses
+  classArm      StudentClassArm
+  roomLocation  String
+  classCapacity Int
+
+  students      Student[]
+  assignedStaff Staff?       @relation(fields: [staffId], references: [id])
+  staffId       String?
+  school        School       @relation(fields: [schoolId], references: [id])
+  schoolId      String
+  attendances   Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("classes")
+}
+
+model Staff {
+  id String @id @default(uuid())
+
+  role        String
+  phoneNumber String
+
+  userId  String  @unique
+  user    User    @relation(fields: [userId], references: [id])
+  classes Class[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Student {
+  id              String @id @default(uuid())
+  admissionNumber String @unique
+
+  dateOfBirth DateTime
+  gender      Gender
+  bloodGroup  String
+
+  guardianModel   Guardian     @relation(fields: [guardianModelId], references: [id])
+  guardianModelId String
+  class           Class        @relation(fields: [classId], references: [id])
+  classId         String
+  userId          String       @unique
+  user            User         @relation(fields: [userId], references: [id])
+  attendances     Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("students")
+}
+
+model Guardian {
+  id String @id @default(uuid())
+
+  phoneNumber  String
+  relationship GuardianRelationship
+
+  students Student[]
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("guardians")
+}
+
+model Announcement {
+  id String @id @default(uuid())
+
+  title          String
+  content        String
+  targetAudience AnnouncementTargetAudience @default(whole_school)
+  priority       AnnouncementPriority
+
+  school   School @relation(fields: [schoolId], references: [id])
+  schoolId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model Attendance {
+  id String @id @default(uuid())
+
+  status AttendanceStatus
+  note   String?
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String
+  class     Class   @relation(fields: [classId], references: [id])
+  classId   String
+  school    School  @relation(fields: [schoolId], references: [id])
+  schoolId  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("attendances")
+}

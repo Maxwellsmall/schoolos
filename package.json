@@ -13,7 +13,10 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "frontend": "pnpm --filter frontend dev",
+    "backend": "pnpm --filter backend start:dev",
+    "dev": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend start:dev\"",
+    "build": "pnpm --filter frontend build && pnpm --filter server build"
   },
   "dependencies": {
     "concurrently": "^10.0.6",
