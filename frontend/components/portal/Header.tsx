@@ -14,7 +14,7 @@ import {
 export default function Header() {
   return (
     <div className="p-3 border-b w-full flex justify-between items-center">
-        <div className="flex gap-3 items-center w-[310] border-r">
+        <div className="flex gap-3 items-center w-[380] border-r mr-5">
       <div className="text-center p-2 px-4  bg-green-700 rounded-md">S</div>
       <div className="">
         <h1>SchoolOs</h1>
@@ -26,12 +26,12 @@ export default function Header() {
           <div className="flex justify-between items-center gap-3">
             <School />
             <div className="">
-              <h1 className="font-bold text-zinc-500">School Campus: </h1>
+              <h1 className="font-bold text-zinc-500 text-xs">School Campus: </h1>
 
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={
-                    <Button variant="outline" className="font-bold">
+                    <Button variant="outline" className="font-bold text-xs">
                       Apex International Academy ( Lagos )
                     </Button>
                   }
@@ -53,11 +53,11 @@ export default function Header() {
           <div className=" flex items-center gap-3">
             <div>
               <div className="p-2 bg-[#b3b19d] rounded-md flex gap-3 items-center">
-                <p className="text-neutral-900">Role View: </p>
+                <p className="text-neutral-900" text-xs>Role View: </p>
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
-                      <Button variant="outline" className="font-bold">
+                      <Button variant="outline" className="font-bold text-xs">
                         School Super admin portal
                       </Button>
                     }
@@ -83,7 +83,7 @@ export default function Header() {
             </div>
             <Button variant={"ghost"}>
               <Home />
-              <p className="font-bold">Website Home</p>
+              <p className="font-bold text-xs">Website Home</p>
             </Button>
             <Button variant={"ghost"}>
               <Bell />

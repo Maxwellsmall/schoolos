@@ -69,23 +69,29 @@ export default function () {
             </div>
             <div className="p-5 bg-white border rounded-md">
                 <p className="text-xs">Term fee Collections</p>
-                <h1 className="text-2xl font-bold">658 students</h1>
+                <h1 className="text-2xl font-bold">$142,500</h1>
                 <div className="flex justify-between items-center">
 
-                <p className="text-xs text-zinc-500">330 boys / 318 girls</p>
-                <div className="bg-[#e5dbbf] p-1 px-2 rounded-sm text-[10px]">Quota: 1000</div>
+                <p className="text-xs text-zinc-500">$180,000 Target (79.1%)</p>
+                <div className="bg-green-50 border border-green-700 p-1 px-2 rounded-sm text-[10px]">On Track</div>
                 </div>
             </div>
             <div className="p-5 bg-white border rounded-md">
-                <p className="text-xs">Total Enrollment</p>
-                <h1 className="text-2xl font-bold">658 students</h1>
+                <p className="text-xs">Staff On Duty Today</p>
+                <h1 className="text-2xl font-bold">38 / 42 Staff</h1>
                 <div className="flex justify-between items-center">
 
-                <p className="text-xs text-zinc-500">330 boys / 318 girls</p>
-                <div className="bg-[#e5dbbf] p-1 px-2 rounded-sm text-[10px]">Quota: 1000</div>
+                <p className="text-xs text-zinc-500">4 on approved medical leave</p>
+                <div className="p-1 px-2 rounded-sm text-[10px]">Zero unassigned periods</div>
                 </div>
             </div>
             
+        </div>
+        <div className="grid md:grid-cols-2 gap-5">
+            <div className="">
+                
+            </div>
+            <div className=""></div>
         </div>
     </div>
   );

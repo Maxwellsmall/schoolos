@@ -4,7 +4,7 @@ import { Building2, UserCircle } from "lucide-react"
 
 export default function Sidebar(){
     return (
-        <div className="bg-[#fdfcf9] h-full w-[310px]"> 
+        <div className="bg-[#fdfcf9] h-full w-[310px] hidden md:block"> 
             <div className="bg-[#ece6dc] p-3 py-3">
                 <p className="text-[12px] text-[#717D76]">ACTIVE CAMPUS</p>
                 <p className="text-[12px]">Apex International School</p>
