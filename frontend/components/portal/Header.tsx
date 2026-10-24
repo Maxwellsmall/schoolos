@@ -14,7 +14,7 @@ import {
 export default function Header() {
   return (
     <div className="p-3 border-b w-full flex justify-between items-center">
-        <div className="flex gap-3 items-center w-80 border-r">
+        <div className="flex gap-3 items-center w-[310] border-r">
       <div className="text-center p-2 px-4  bg-green-700 rounded-md">S</div>
       <div className="">
         <h1>SchoolOs</h1>
@@ -52,8 +52,8 @@ export default function Header() {
 
           <div className=" flex items-center gap-3">
             <div>
-              <div className="p-2 bg-zinc-200 rounded-md flex gap-3 items-center">
-                <p className="text-neutral-500">Role View: </p>
+              <div className="p-2 bg-[#b3b19d] rounded-md flex gap-3 items-center">
+                <p className="text-neutral-900">Role View: </p>
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
