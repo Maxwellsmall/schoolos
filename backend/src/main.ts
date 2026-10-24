@@ -4,10 +4,16 @@ import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 
+declare const module: any;
+
 async function bootstrap() {
+  if (module.hot?.data?.closePromise) {
+    await module.hot.data.closePromise;
+  }
+
   const app = await NestFactory.create(AppModule);
 
-  app.use(helmet);
+  app.use(helmet());
 
   app.enableCors({});
 
@@ -26,6 +32,13 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, documentFactory);
 
   await app.listen(process.env.PORT ?? 3000);
+
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose = () => {
+      module.host();
+    };
+  }
 }
 
 void bootstrap();
