@@ -1,22 +1,26 @@
 "use ckient"
 import { Button } from "../ui/button"
-import { Building2, UserCircle } from "lucide-react"
+import { Building2, LayoutDashboard, UserCircle } from "lucide-react"
 
 export default function Sidebar(){
     return (
-        <div className="bg-[#fdfcf9] h-full w-[310px] hidden md:block"> 
-            <div className="bg-[#ece6dc] p-3 py-3">
-                <p className="text-[12px] text-[#717D76]">ACTIVE CAMPUS</p>
-                <p className="text-[12px]">Apex International School</p>
-                <p className="text-[12px]">Lagos Campus . <span className="text-green-500"> First Term Week 7 </span></p>
-            </div>
+        <div className="bg-[#fdfcf9] h-full w-[310px] hidden md:block border-r"> 
+         <div className="flex gap-3 items-center  mr-5 p-4">
+      <div className="text-center p-2 px-4  bg-black rounded-md text-white">S</div>
+      <div className="">
+        <h1>SchoolOs</h1>
+        <p className="text-xs">Campus Operationals Portal</p>
+      </div>
+        </div>
+       
             <div className="m-5">
-                <p className="text-xs tracking-wider">SUPER ADMIN WORKSPACE</p>
+                <p className="text-xs tracking-wider mb-2 text-zinc-700">OVERVIEW</p>
                 <div className="">
-                    <Button variant={"selected"} className="flex justify-start gap-2 items-center px-5 bg-green-800 w-full">
-                            <Building2 />
-                            Executive Dashboard
+                    <Button variant={"selected"} className="flex justify-start gap-2 items-center px-5 bg-black w-full">
+                            <LayoutDashboard />
+                            Dashboard
                     </Button>
+                    <p className="text-xs tracking-wider mt-5 text-zinc-700">ACADEMIC STRUCTURE</p>
                     <Button variant={"ghost"} className="flex justify-around items-center px-5">
                             <Building2 />
                             Academic session and class
