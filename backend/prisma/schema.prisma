@@ -12,81 +12,10 @@ datasource db {
   provider = "postgresql"
 }
 
-enum UserRole {
-  root_admin
-  school_super_admin
-  school_admin
-  teacher
-  parent
-  student
-}
-
-enum Gender {
-  male
-  female
-}
-
-enum StudentClasses {
-  grade_1
-  grade_2
-  grade_3
-  grade_4
-  grade_5
-  grade_6
-  grade_7
-  grade_8
-  grade_9
-  grade_10
-  grade_11
-  grade_12
-
-  @@map("Classes")
-}
-
-enum StudentClassArm {
-  gold
-  silver
-  blue
-  diamond
-  pearl
-
-  @@map("ClassArm")
-}
-
-enum GuardianRelationship {
-  father
-  mother
-  uncle
-  aunty
-  family_member
-}
-
-enum AnnouncementTargetAudience {
-  whole_school
-  staff
-  students
-  parent
-  parent_student
-  parent_staff
-  staff_student
-}
-
-enum AnnouncementPriority {
-  normal
-  high
-}
-
-enum AttendanceStatus {
-  present
-  absent
-  late
-  excused
-}
-
 model School {
   id String @id @default(uuid())
 
-  Name               String
+  name               String
   motto              String
   phoneNumber        String
   email              String @unique
@@ -110,6 +39,8 @@ model School {
 model User {
   id String @id @default(uuid())
 
+  firstName    String
+  lastName     String
   email        String @unique
   passwordHash String
 
@@ -151,8 +82,6 @@ model Class {
 model Staff {
   id String @id @default(uuid())
 
-  firstName   String
-  lastName    String
   role        String
   phoneNumber String
 
@@ -272,4 +201,75 @@ model AcademicTerm {
   updatedAt DateTime @updatedAt
 
   @@map("academicTerms")
+}
+
+enum UserRole {
+  root_admin
+  school_super_admin
+  school_admin
+  teacher
+  parent
+  student
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum StudentClasses {
+  grade_1
+  grade_2
+  grade_3
+  grade_4
+  grade_5
+  grade_6
+  grade_7
+  grade_8
+  grade_9
+  grade_10
+  grade_11
+  grade_12
+
+  @@map("Classes")
+}
+
+enum StudentClassArm {
+  gold
+  silver
+  blue
+  diamond
+  pearl
+
+  @@map("ClassArm")
+}
+
+enum GuardianRelationship {
+  father
+  mother
+  uncle
+  aunty
+  family_member
+}
+
+enum AnnouncementTargetAudience {
+  whole_school
+  staff
+  students
+  parent
+  parent_student
+  parent_staff
+  staff_student
+}
+
+enum AnnouncementPriority {
+  normal
+  high
+}
+
+enum AttendanceStatus {
+  present
+  absent
+  late
+  excused
 }

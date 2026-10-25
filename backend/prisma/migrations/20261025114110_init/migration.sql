@@ -25,7 +25,7 @@ CREATE TYPE "AttendanceStatus" AS ENUM ('present', 'absent', 'late', 'excused');
 -- CreateTable
 CREATE TABLE "schools" (
     "id" TEXT NOT NULL,
-    "Name" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "motto" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -41,8 +41,6 @@ CREATE TABLE "schools" (
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
     "role" "UserRole" NOT NULL,
@@ -71,6 +69,8 @@ CREATE TABLE "classes" (
 -- CreateTable
 CREATE TABLE "Staff" (
     "id" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -87,7 +87,8 @@ CREATE TABLE "students" (
     "dateOfBirth" TIMESTAMP(3) NOT NULL,
     "gender" "Gender" NOT NULL,
     "bloodGroup" TEXT NOT NULL,
-    "guardianModelId" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "guardianId" TEXT NOT NULL,
     "classId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -196,7 +197,7 @@ ALTER TABLE "classes" ADD CONSTRAINT "classes_schoolId_fkey" FOREIGN KEY ("schoo
 ALTER TABLE "Staff" ADD CONSTRAINT "Staff_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "students" ADD CONSTRAINT "students_guardianModelId_fkey" FOREIGN KEY ("guardianModelId") REFERENCES "guardians"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "students" ADD CONSTRAINT "students_guardianId_fkey" FOREIGN KEY ("guardianId") REFERENCES "guardians"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "students" ADD CONSTRAINT "students_classId_fkey" FOREIGN KEY ("classId") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,12 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { JwtGuard, RolesGuard } from '../auth/guard';
+import { Roles } from '../auth/decorators';
 
+@ApiBearerAuth()
+@UseGuards(RolesGuard)
+@UseGuards(JwtGuard)
 @Controller('students')
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
+  @Roles(['school_admin', 'school_super_admin'])
   @Post()
   create(@Body() createStudentDto: CreateStudentDto) {
     return this.studentsService.create(createStudentDto);

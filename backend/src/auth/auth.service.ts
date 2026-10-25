@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginDto, LoginResponseDto } from './dto';
+import { LoginDto, LoginResponseDto, SignupDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
@@ -37,5 +37,12 @@ export class AuthService {
     });
 
     return { access_token: token };
+  }
+
+  async signup(signupDto: SignupDto): Promise<LoginResponseDto> {
+    // check if account already exist
+    // create school
+    // create  user account with admin role
+    // login the user
   }
 }
