@@ -5,44 +5,37 @@ import {
   ApiProperty,
   getSchemaPath,
 } from '@nestjs/swagger';
-import {
-  $Enums,
-  Guardian,
-  Staff,
-  Student,
-  User,
-} from '../../../generated/prisma';
-
-export class StudentResponseDto implements Student {
-  @ApiProperty() id!: string;
-  @ApiProperty() admissionNumber!: string;
-  @ApiProperty() dateOfBirth!: Date;
-  @ApiProperty({ enum: $Enums.Gender }) gender!: $Enums.Gender;
-  @ApiProperty() bloodGroup!: string;
-  @ApiProperty() guardianModelId!: string;
-  @ApiProperty() classId!: string;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
-}
+import { $Enums, Guardian, Staff, User } from '../../../generated/prisma';
+import { StudentBaseResponseDto } from '../../students/dto';
 
 export class StaffResponseDto implements Staff {
-  @ApiProperty() id!: string;
-  @ApiProperty() role!: string;
-  @ApiProperty() phoneNumber!: string;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
+  @ApiProperty()
+  id!: string;
+  @ApiProperty()
+  role!: string;
+  @ApiProperty()
+  phoneNumber!: string;
+  @ApiProperty()
+  userId!: string;
+  @ApiProperty()
+  createdAt!: Date;
+  @ApiProperty()
+  updatedAt!: Date;
 }
 
 export class GuardianResponseDto implements Guardian {
-  @ApiProperty() id!: string;
-  @ApiProperty() phoneNumber!: string;
+  @ApiProperty()
+  id!: string;
+  @ApiProperty()
+  phoneNumber!: string;
   @ApiProperty({ enum: $Enums.GuardianRelationship })
   relationship!: $Enums.GuardianRelationship;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
+  @ApiProperty()
+  userId!: string;
+  @ApiProperty()
+  createdAt!: Date;
+  @ApiProperty()
+  updatedAt!: Date;
 }
 
 type UserRole = $Enums.UserRole;
@@ -52,7 +45,7 @@ type UserBase = Omit<User, 'passwordHash' | 'role'>;
 type UserWith<R extends UserRole, P> = UserBase & { role: R } & P;
 
 export type UserResponse =
-  | UserWith<'student', { student: StudentResponseDto }>
+  | UserWith<'student', { student: StudentBaseResponseDto }>
   | UserWith<StaffRole, { staff: StaffResponseDto }>
   | UserWith<'parent', { guardian: GuardianResponseDto }>
   | UserWith<'root_admin', Record<never, never>>;
@@ -66,13 +59,20 @@ export type UserResponseFor<R extends UserRole> = UserResponse extends infer V
   : never;
 
 export class UserBaseResponseDto implements UserBase {
-  @ApiProperty() id!: string;
-  @ApiProperty() firstName!: string;
-  @ApiProperty() lastName!: string;
-  @ApiProperty() email!: string;
-  @ApiProperty() schoolId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
+  @ApiProperty()
+  id!: string;
+  @ApiProperty()
+  firstName!: string;
+  @ApiProperty()
+  lastName!: string;
+  @ApiProperty()
+  email!: string;
+  @ApiProperty()
+  schoolId!: string;
+  @ApiProperty()
+  createdAt!: Date;
+  @ApiProperty()
+  updatedAt!: Date;
 }
 
 export class StudentUserResponseDto
@@ -80,7 +80,8 @@ export class StudentUserResponseDto
   implements UserResponseFor<'student'>
 {
   @ApiProperty({ enum: ['student'] }) role!: 'student';
-  @ApiProperty({ type: StudentResponseDto }) student!: StudentResponseDto;
+  @ApiProperty({ type: StudentBaseResponseDto })
+  student!: StudentBaseResponseDto;
 }
 
 export class StaffUserResponseDto

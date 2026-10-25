@@ -110,8 +110,6 @@ model School {
 model User {
   id String @id @default(uuid())
 
-  firstName    String
-  lastName     String
   email        String @unique
   passwordHash String
 
@@ -153,6 +151,8 @@ model Class {
 model Staff {
   id String @id @default(uuid())
 
+  firstName   String
+  lastName    String
   role        String
   phoneNumber String
 
@@ -171,14 +171,16 @@ model Student {
   dateOfBirth DateTime
   gender      Gender
   bloodGroup  String
+  address     String
 
-  guardianModel   Guardian     @relation(fields: [guardianModelId], references: [id])
-  guardianModelId String
-  class           Class        @relation(fields: [classId], references: [id])
-  classId         String
-  userId          String       @unique
-  user            User         @relation(fields: [userId], references: [id])
-  attendances     Attendance[]
+  guardian   Guardian @relation(fields: [guardianId], references: [id])
+  guardianId String
+  class      Class    @relation(fields: [classId], references: [id])
+  classId    String
+  userId     String   @unique
+
+  user        User         @relation(fields: [userId], references: [id])
+  attendances Attendance[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
