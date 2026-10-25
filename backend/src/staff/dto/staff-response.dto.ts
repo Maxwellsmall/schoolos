@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Staff } from '../../../generated/prisma';
-import { UserBaseResponseDto } from '../../users/dto/user-response.dto';
+import { UserBaseResponseDto } from '../../users/dto/';
 
 export class StaffBaseResponseDto implements Staff {
   @ApiProperty()
@@ -17,6 +17,6 @@ export class StaffBaseResponseDto implements Staff {
   updatedAt!: Date;
 }
 export class StaffResponseDto extends StaffBaseResponseDto {
-  @ApiProperty({ type: () => UserBaseResponseDto })
+  @ApiProperty({ type: UserBaseResponseDto })
   user!: UserBaseResponseDto;
 }

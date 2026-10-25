@@ -15,8 +15,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { ApiUserResponse } from './dto/user-response.dto';
 
 @ApiBearerAuth()
-@UseGuards(RolesGuard)
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

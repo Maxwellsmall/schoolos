@@ -17,8 +17,7 @@ import { Roles } from '../auth/decorators';
 import { ClassResponseDto } from './dto';
 
 @ApiBearerAuth()
-@UseGuards(RolesGuard)
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @Controller('class')
 export class ClassController {
   constructor(private readonly classService: ClassService) {}

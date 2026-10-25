@@ -1,11 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateParentDto } from './dto/create-parent.dto';
 import { UpdateParentDto } from './dto/update-parent.dto';
+import { PrismaService } from '../prisma/prisma.service';
+import { hash } from 'argon2';
+import { GuardianResponseDto } from './dto';
 
 @Injectable()
 export class ParentsService {
-  create(createParentDto: CreateParentDto) {
-    return 'This action adds a new parent';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createParentDto: CreateParentDto): Promise<GuardianResponseDto> {
+    const {
+      email,
+      firstName,
+      lastName,
+      phoneNumber,
+      relationship,
+      password,
+      schoolId,
+    } = createParentDto;
+    const existingParent = await this.prisma.guardian.findFirst({
+      where: { user: { email: createParentDto.email } },
+    });
+    if (existingParent)
+      throw new ConflictException('Emails already in use, try another');
+
+    const passwordHash = await hash(password);
+
+    const parent = await this.prisma.guardian.create({
+      data: {
+        phoneNumber,
+        relationship,
+        user: {
+          create: {
+            email,
+            firstName,
+            lastName,
+            passwordHash,
+            role: 'parent',
+            schoolId,
+          },
+        },
+      },
+      include: { user: true },
+    });
+
+    return parent;
   }
 
   findAll() {
