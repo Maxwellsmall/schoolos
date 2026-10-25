@@ -86,18 +86,20 @@ enum AttendanceStatus {
 model School {
   id String @id @default(uuid())
 
-  Name        String
-  motto       String
-  phoneNumber String
-  email       String @unique
-  address     String
+  Name               String
+  motto              String
+  phoneNumber        String
+  email              String @unique
+  address            String
+  masterPasswordHash String
 
   ministryAccreditationNumber String @unique
 
-  users         User[]
-  classes       Class[]
-  announcements Announcement[]
-  attendances   Attendance[]
+  users            User[]
+  classes          Class[]
+  announcements    Announcement[]
+  attendances      Attendance[]
+  academicSessions AcademicSession[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -108,18 +110,18 @@ model School {
 model User {
   id String @id @default(uuid())
 
-  firstName     String
-  lastName      String
-  email         String @unique
-  password_hash String
+  firstName    String
+  lastName     String
+  email        String @unique
+  passwordHash String
 
   role UserRole
 
-  school    School    @relation(fields: [schoolId], references: [id])
-  schoolId  String
-  staffs    Staff?
-  students  Student?
-  guardians Guardian?
+  school   School    @relation(fields: [schoolId], references: [id])
+  schoolId String
+  staff    Staff?
+  student  Student?
+  guardian Guardian?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -234,4 +236,38 @@ model Attendance {
   updatedAt DateTime @updatedAt
 
   @@map("attendances")
+}
+
+model AcademicSession {
+  id String @id @default(uuid())
+
+  name      String
+  startData DateTime
+  endData   DateTime
+
+  school   School @relation(fields: [schoolId], references: [id])
+  schoolId String
+
+  academicTerms AcademicTerm[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("academicSessions")
+}
+
+model AcademicTerm {
+  id String @id @default(uuid())
+
+  name      String
+  startData DateTime
+  endData   DateTime
+
+  academicSession   AcademicSession @relation(fields: [academicSessionId], references: [id])
+  academicSessionId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("academicTerms")
 }
