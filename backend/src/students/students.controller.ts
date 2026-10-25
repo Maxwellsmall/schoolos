@@ -12,7 +12,7 @@ import { StudentsService } from './students.service';
 import { CreateStudentDto, UpdateStudentDto, StudentResponseDto } from './dto';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtGuard, RolesGuard } from '../auth/guard';
-import { Roles } from '../auth/decorators';
+import { GetUser, Roles } from '../auth/decorators';
 
 @ApiBearerAuth()
 @UseGuards(RolesGuard)
@@ -32,24 +32,45 @@ export class StudentsController {
     return this.studentsService.create(createStudentDto);
   }
 
+  @ApiOperation({
+    summary: 'Get all students',
+    description: 'Get  the list of all students',
+  })
+  @ApiResponse({ type: [StudentResponseDto], status: 200 })
   @Roles(['school_admin', 'teacher'])
   @Get()
-  findAll() {
-    return this.studentsService.findAll();
+  findAll(@GetUser('schoolId') schoolId: string) {
+    return this.studentsService.findAll(schoolId);
   }
 
+  @ApiOperation({
+    summary: 'Get student details',
+    description: 'Get details of a particular student',
+  })
+  @ApiResponse({ type: StudentResponseDto, status: 200 })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.studentsService.findOne(+id);
+    return this.studentsService.findOne(id);
   }
 
+  @ApiOperation({
+    summary: 'Update students details',
+    description: 'Update details of a particular student',
+  })
+  @ApiResponse({ type: StudentResponseDto, status: 200 })
+  @Roles(['school_admin'])
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
+    return this.studentsService.update(id, updateStudentDto);
   }
 
+  @ApiOperation({
+    summary: 'Delete student details',
+    description: 'Delete details of a particular student',
+  })
+  @Roles(['school_admin'])
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.studentsService.remove(+id);
+    return this.studentsService.remove(id);
   }
 }

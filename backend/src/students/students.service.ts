@@ -1,9 +1,14 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { hash } from 'argon2';
 import { StudentResponseDto } from './dto';
+import { GeneralOkResponseDto } from '../common/dto';
 
 @Injectable()
 export class StudentsService {
@@ -65,19 +70,68 @@ export class StudentsService {
     return student;
   }
 
-  findAll() {
-    return `This action returns all students`;
+  async findAll(schoolId: string): Promise<StudentResponseDto[]> {
+    const students = await this.prisma.student.findMany({
+      where: { user: { schoolId } },
+      include: { user: true },
+    });
+    if (students.length)
+      throw new NotFoundException('No students registered yet');
+    return students;
   }
 
-  findOne(id: number) {
+  async findOne(id: string) {
+    const student = await this.prisma.student.findUnique({ where: { id } });
+    if (!student) throw new NotFoundException('Student not found');
     return `This action returns a #${id} student`;
   }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
-    return `This action updates a #${id} student`;
+  async update(
+    id: string,
+    updateStudentDto: UpdateStudentDto,
+  ): Promise<StudentResponseDto> {
+    const {
+      address,
+      admissionNumber,
+      bloodGroup,
+      classId,
+      dateOfBirth,
+      firstName,
+      gender,
+      guardianId,
+      lastName,
+      loginEmail,
+      password,
+    } = updateStudentDto;
+    const student = await this.prisma.student.findUnique({ where: { id } });
+
+    if (!student) throw new NotFoundException('Student not found');
+
+    const passwordHash = password ? await hash(password) : undefined;
+
+    return await this.prisma.student.update({
+      where: { id },
+      data: {
+        address,
+        admissionNumber,
+        dateOfBirth,
+        gender,
+        bloodGroup,
+        class: { connect: { id: classId } },
+        guardian: { connect: { id: guardianId } },
+        user: {
+          update: { firstName, lastName, email: loginEmail, passwordHash },
+        },
+      },
+      include: { user: true },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} student`;
+  async remove(id: string): Promise<GeneralOkResponseDto> {
+    const student = await this.prisma.student.findUnique({ where: { id } });
+    if (!student) throw new NotFoundException('Student not found');
+
+    await this.prisma.student.delete({ where: { id } });
+    return { messages: 'Student Details deleted' };
   }
 }
