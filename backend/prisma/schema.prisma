@@ -67,8 +67,8 @@ model Class {
   classCapacity Int
 
   students      Student[]
-  assignedStaff Staff?       @relation(fields: [staffId], references: [id])
-  staffId       String?
+  assignedStaff Staff        @relation(fields: [staffId], references: [id])
+  staffId       String
   school        School       @relation(fields: [schoolId], references: [id])
   schoolId      String
   attendances   Attendance[]

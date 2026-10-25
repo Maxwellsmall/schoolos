@@ -9,9 +9,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
-import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { CreateStudentDto, UpdateStudentDto, StudentResponseDto } from './dto';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtGuard, RolesGuard } from '../auth/guard';
 import { Roles } from '../auth/decorators';
 
@@ -22,13 +21,18 @@ import { Roles } from '../auth/decorators';
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
-  @Roles(['school_admin', 'school_super_admin'])
+  @ApiOperation({
+    summary: 'Register student',
+    description: 'Register a new student',
+  })
+  @ApiResponse({ type: StudentResponseDto, status: 201 })
+  @Roles(['school_admin'])
   @Post()
   create(@Body() createStudentDto: CreateStudentDto) {
     return this.studentsService.create(createStudentDto);
   }
 
-  @Roles(['school_admin', 'school_super_admin', 'teacher'])
+  @Roles(['school_admin', 'teacher'])
   @Get()
   findAll() {
     return this.studentsService.findAll();

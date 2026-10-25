@@ -39,7 +39,7 @@ export class GuardianResponseDto implements Guardian {
 }
 
 type UserRole = $Enums.UserRole;
-type StaffRole = 'teacher' | 'school_admin' | 'school_super_admin';
+type StaffRole = 'teacher' | 'school_admin';
 
 type UserBase = Omit<User, 'passwordHash' | 'role'>;
 type UserWith<R extends UserRole, P> = UserBase & { role: R } & P;
@@ -110,7 +110,6 @@ export class AdminUserResponseDto
 
 const userModelByRole: Record<UserRole, Type<UserBaseResponseDto>> = {
   root_admin: AdminUserResponseDto,
-  school_super_admin: StaffUserResponseDto,
   school_admin: StaffUserResponseDto,
   teacher: StaffUserResponseDto,
   parent: GuardianUserResponseDto,
