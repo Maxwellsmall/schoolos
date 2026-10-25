@@ -12,13 +12,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { JwtGuard, RolesGuard } from '../auth/guard';
 import { ApiResponse } from '@nestjs/swagger';
-import { UserResponseDto } from './dto/user-response.dto';
+import { ApiUserResponse } from './dto/user-response.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiResponse({ type: UserResponseDto, status: 200 })
+  @ApiUserResponse()
   @Get()
   findAll() {
     return this.usersService.findAll();
