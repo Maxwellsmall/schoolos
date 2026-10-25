@@ -12,7 +12,9 @@ async function bootstrap() {
     await module.hot.data.closePromise;
   }
 
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    forceCloseConnections: !!module.hot,
+  });
 
   app.use(helmet());
 
@@ -39,8 +41,8 @@ async function bootstrap() {
 
   if (module.hot) {
     module.hot.accept();
-    module.hot.dispose = () => {
-      module.host();
+    module.hot.dispose = (data: any) => {
+      data.closePromise = app.close();
     };
   }
 }

@@ -33,7 +33,7 @@ import { RolesGuard } from './auth/guard';
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
-    { provide: APP_GUARD, useClass: RolesGuard },
+    // { provide: APP_GUARD, useClass: RolesGuard },
   ],
 })
 export class AppModule {}
