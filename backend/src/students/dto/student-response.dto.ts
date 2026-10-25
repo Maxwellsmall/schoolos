@@ -14,11 +14,13 @@ export class StudentBaseResponseDto implements Student {
   @ApiProperty()
   bloodGroup!: string;
   @ApiProperty()
-  guardianModelId!: string;
+  guardianId!: string;
   @ApiProperty()
   classId!: string;
   @ApiProperty()
   userId!: string;
+  @ApiProperty()
+  address!: string;
   @ApiProperty()
   createdAt!: Date;
   @ApiProperty()

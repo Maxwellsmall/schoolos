@@ -28,6 +28,7 @@ export class StudentsController {
     return this.studentsService.create(createStudentDto);
   }
 
+  @Roles(['school_admin', 'school_super_admin', 'teacher'])
   @Get()
   findAll() {
     return this.studentsService.findAll();

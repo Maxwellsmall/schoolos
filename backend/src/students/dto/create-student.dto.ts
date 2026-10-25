@@ -11,6 +11,10 @@ import {
 } from 'class-validator';
 
 export class CreateStudentDto extends CreateUserDto {
+  @ApiProperty()
+  @IsString()
+  admissionNumber!: string;
+
   @IsString()
   @ApiProperty()
   middleName!: string;
@@ -30,6 +34,10 @@ export class CreateStudentDto extends CreateUserDto {
   @IsUUID()
   @ApiProperty()
   guardianId!: string;
+
+  @IsUUID()
+  @ApiProperty()
+  schoolId!: string;
 
   @IsString()
   @ApiProperty()

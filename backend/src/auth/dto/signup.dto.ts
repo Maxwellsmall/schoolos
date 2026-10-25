@@ -5,7 +5,10 @@ import { IsString } from 'class-validator';
 export class SignupDto extends CreateSchoolDto {
   @ApiProperty()
   @IsString()
-  adminName!: string;
+  adminFirstName!: string;
+  @ApiProperty()
+  @IsString()
+  adminLastName!: string;
   @ApiProperty()
   @IsString()
   password!: string;

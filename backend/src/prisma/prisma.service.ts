@@ -8,6 +8,10 @@ export class PrismaService extends PrismaClient {
   constructor(private readonly config: ConfigService) {
     super({
       adapter: new PrismaPg({ connectionString: config.get('DATABASE_URL') }),
+      omit: {
+        user: { passwordHash: true },
+        school: { masterPasswordHash: true },
+      },
     });
   }
 }
