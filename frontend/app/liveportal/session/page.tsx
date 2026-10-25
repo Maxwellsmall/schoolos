@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
+import { Input } from "@/components/ui/input"
 
 export default function session(){
     return (
@@ -20,9 +21,11 @@ export default function session(){
           </div>
         </div>
 
-        <div>
-            <Button variant="ghost">Academic Sessions</Button>
+        <div className="flex gap-3 bg-zinc-300 p-2 w-[400px] rounded-md">
+            <Button variant="ghost">Academic Sessions (2)</Button>
+            <Button variant="secondary">School Terms (3)</Button>
         </div>
+        <Input type="search" placeholder="Search Sessions (e.g. 2024/2025)..." className="my-5 w-[400px]"/>
         </div>
     )
 }
