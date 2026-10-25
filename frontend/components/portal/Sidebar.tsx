@@ -1,6 +1,7 @@
 "use ckient"
 import { Button } from "../ui/button"
 import { Building2, LayoutDashboard, UserCircle } from "lucide-react"
+import Link from "next/link"
 
 export default function Sidebar(){
     return (
@@ -16,15 +17,19 @@ export default function Sidebar(){
             <div className="m-5">
                 <p className="text-xs tracking-wider mb-2 text-zinc-700">OVERVIEW</p>
                 <div className="">
+                    <Link href={"/liveportal"}>
                     <Button variant={"selected"} className="flex justify-start gap-2 items-center px-5 bg-black w-full">
                             <LayoutDashboard />
                             Dashboard
                     </Button>
+                    </Link>
                     <p className="text-xs tracking-wider mt-5 text-zinc-700">ACADEMIC STRUCTURE</p>
+                    <Link href="/liveportal/session">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5">
                             <Building2 />
-                            Academic session and class
-                    </Button>
+                            session and Terms
+                    </Button> 
+                    </Link>
                 </div>
                 <div className="flex absolute bottom-0 p-2 gap-3 items-center jusrify-start self-start">
                     <UserCircle size={35}/>

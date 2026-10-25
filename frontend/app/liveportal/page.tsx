@@ -65,8 +65,8 @@ export default function () {
               </div>
               <div className="text-[13px] flex justify-between border rounded-md p-3 mb-5">
                 <div className="">
-                    <p>Oluwaseun Chukwu</p>
-                    <p>ARA/2023/048 • JSS 2 Gold</p>
+                    <p className="font-semibold">Oluwaseun Chukwu</p>
+                    <p>ARA/2023/048  JSS 2 Gold</p>
                 </div>
                 <div className="flex gap-2">
                     <div>
@@ -78,34 +78,34 @@ export default function () {
               </div>
                 <div className="text-[13px] flex justify-between border rounded-md p-3 mb-5">
                 <div className="">
-                    <p>Fatima Bello</p>
-                    <p>ARA/2023/049 • JSS 2 Gold</p>
+                    <p className="font-semibold">Fatima Bello</p>
+                    <p>ARA/2023/049  JSS 2 Gold</p>
                 </div>
                 <div className="flex gap-2">
                     <div>
                     <p>₦240,000</p>
-                    <p>Paid: ₦240,000</p>
+                    <p>Paid: ₦150,000</p>
                     </div>
-                    <span className="p-2 bg-green-800 text-white items-center rounded">Paid</span>
+                    <span className="p-2 bg-orange-600 text-white items-center rounded">Part Paid</span>
                 </div>
               </div>
                <div className="text-[13px] flex justify-between border rounded-md p-3 mb-5">
                 <div className="">
-                    <p>Oluwaseun Chukwu</p>
-                    <p>ARA/2023/048 • JSS 2 Gold</p>
+                    <p className="font-semibold">Demilade Adeleke</p>
+                    <p>ARA/2023/050 JSS 2 Gold</p>
                 </div>
                 <div className="flex gap-2">
                     <div>
                     <p>₦240,000</p>
-                    <p>Paid: ₦240,000</p>
+                    <p>Paid: ₦0</p>
                     </div>
-                    <span className="p-2 bg-green-800 text-white items-center rounded">Paid</span>
+                    <span className="p-2 bg-red-800 text-white items-center rounded">overdue</span>
                 </div>
               </div>
                <div className="text-[13px] flex justify-between border rounded-md p-3 mb-5">
                 <div className="">
-                    <p>Oluwaseun Chukwu</p>
-                    <p>ARA/2023/048 • JSS 2 Gold</p>
+                    <p className="font-semibold">Bilal Abubakar</p>
+                    <p>ARA/2023/048 JSS 2 Gold</p>
                 </div>
                 <div className="flex gap-2">
                     <div>
