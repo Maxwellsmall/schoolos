@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
+import { Calendar, Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 export default function session(){
@@ -25,7 +25,34 @@ export default function session(){
             <Button variant="ghost">Academic Sessions (2)</Button>
             <Button variant="secondary">School Terms (3)</Button>
         </div>
-        <Input type="search" placeholder="Search Sessions (e.g. 2024/2025)..." className="my-5 w-[400px]"/>
+
+        <div className="flex my-5 w-[400px] border items-center rounded-md">
+            <Button variant="ghost">
+            <Search className="text-zinc-400 text-xs"/>
+            </Button>
+            <Input type="search" placeholder="Search Sessions (e.g. 2024/2025)..." className=" w-full border-0 hover:border-0"/>
+        </div>
+        <div className="">
+            <div className="">
+                <div className="flex justify-between text-zinc-400 ">
+                    <p>SESSION NAME </p>
+                    <p>START DATE</p>
+                    <p>END DATE</p>
+                    <p>STATUS</p>
+                    <p>ACTIONS</p>
+                </div>
+                <div className="">
+                    <div className=" flex gap-2 items-center">
+                        <Calendar />
+                    <p className="semibold">2023/2024 Academic Year</p>
+                    </div>
+                    <p>11 sept 2023</p>
+                    <p>9 sept 2024</p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
         </div>
     )
 }
