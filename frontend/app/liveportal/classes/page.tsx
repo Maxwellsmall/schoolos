@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { Ellipse, Ellipsis, GraduationCap, Plus } from "lucide-react"
+import { ChevronLeft, ChevronRight, Ellipse, Ellipsis, GraduationCap, Plus } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 export default function Classes(){
@@ -65,7 +65,7 @@ export default function Classes(){
             <h1 className="text-black text-2xl font-semibold">
               Classes & Academic Arms
             </h1>
-            <p className="text-black text-gray-500">
+            <p className="text-black text-sm text-gray-500">
               Configure classroom arms, assign designated class teachers, and manage seat capacities.
             </p>
           </div>
@@ -118,8 +118,17 @@ export default function Classes(){
           </div>
 
         </div>
-        <div>
-              <p className="text-zinc-300">Showing 1 to 6 of 6 records</p>
+        <div className="flex w-full justify-between my-4">
+              <p className="text-zinc-400">Showing 1 to 6 of 6 records</p>
+              <div className="flex items-center gap-2 justify-center">
+                <Button>
+                <ChevronLeft/>
+                </Button>
+                <span>Page 1 of 1</span>
+                <Button>
+                <ChevronRight/>
+                </Button>
+              </div>
 
         </div>
         </div>
