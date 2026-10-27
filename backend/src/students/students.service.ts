@@ -9,12 +9,14 @@ import { PrismaService } from '../prisma/prisma.service';
 import { hash } from 'argon2';
 import { StudentResponseDto } from './dto';
 import { GeneralOkResponseDto } from '../common/dto';
+import { User } from '../../generated/prisma';
 
 @Injectable()
 export class StudentsService {
   constructor(private readonly prisma: PrismaService) {}
   async create(
     createStudentDto: CreateStudentDto,
+    user: User,
   ): Promise<StudentResponseDto> {
     const {
       address,
@@ -29,6 +31,13 @@ export class StudentsService {
       schoolId,
       password,
     } = createStudentDto;
+    const school = await this.prisma.school.findFirst({
+      where: { id: schoolId, users: { some: { id: user.id } } },
+      select: { id: true },
+    });
+
+    if (!school) throw new NotFoundException('School not found');
+
     const loginEmail =
       createStudentDto.loginEmail ||
       `${createStudentDto.firstName.toLowerCase()}${createStudentDto.lastName.toLowerCase()}@iqra.edu.ng`;
@@ -70,9 +79,9 @@ export class StudentsService {
     return student;
   }
 
-  async findAll(schoolId: string): Promise<StudentResponseDto[]> {
+  async findAll(user: User): Promise<StudentResponseDto[]> {
     const students = await this.prisma.student.findMany({
-      where: { user: { schoolId } },
+      where: { user: { schoolId: user.schoolId } },
       include: { user: true },
     });
     if (students.length)
@@ -80,8 +89,10 @@ export class StudentsService {
     return students;
   }
 
-  async findOne(id: string) {
-    const student = await this.prisma.student.findUnique({ where: { id } });
+  async findOne(id: string, user: User) {
+    const student = await this.prisma.student.findUnique({
+      where: { id, user: { schoolId: user.schoolId } },
+    });
     if (!student) throw new NotFoundException('Student not found');
     return `This action returns a #${id} student`;
   }
@@ -89,6 +100,7 @@ export class StudentsService {
   async update(
     id: string,
     updateStudentDto: UpdateStudentDto,
+    user: User,
   ): Promise<StudentResponseDto> {
     const {
       address,
@@ -103,7 +115,9 @@ export class StudentsService {
       loginEmail,
       password,
     } = updateStudentDto;
-    const student = await this.prisma.student.findUnique({ where: { id } });
+    const student = await this.prisma.student.findUnique({
+      where: { id, user: { schoolId: user.schoolId } },
+    });
 
     if (!student) throw new NotFoundException('Student not found');
 
@@ -127,8 +141,10 @@ export class StudentsService {
     });
   }
 
-  async remove(id: string): Promise<GeneralOkResponseDto> {
-    const student = await this.prisma.student.findUnique({ where: { id } });
+  async remove(id: string, user: User): Promise<GeneralOkResponseDto> {
+    const student = await this.prisma.student.findUnique({
+      where: { id, user: { schoolId: user.schoolId } },
+    });
     if (!student) throw new NotFoundException('Student not found');
 
     await this.prisma.student.delete({ where: { id } });

@@ -13,6 +13,7 @@ import { CreateStudentDto, UpdateStudentDto, StudentResponseDto } from './dto';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtGuard, RolesGuard } from '../auth/guard';
 import { GetUser, Roles } from '../auth/decorators';
+import { type User } from '../../generated/prisma';
 
 @ApiBearerAuth()
 @UseGuards(RolesGuard)
@@ -28,8 +29,8 @@ export class StudentsController {
   @ApiResponse({ type: StudentResponseDto, status: 201 })
   @Roles(['school_admin'])
   @Post()
-  create(@Body() createStudentDto: CreateStudentDto) {
-    return this.studentsService.create(createStudentDto);
+  create(@Body() createStudentDto: CreateStudentDto, @GetUser() user: User) {
+    return this.studentsService.create(createStudentDto, user);
   }
 
   @ApiOperation({
@@ -39,8 +40,8 @@ export class StudentsController {
   @ApiResponse({ type: [StudentResponseDto], status: 200 })
   @Roles(['school_admin', 'teacher'])
   @Get()
-  findAll(@GetUser('schoolId') schoolId: string) {
-    return this.studentsService.findAll(schoolId);
+  findAll(@GetUser() user: User) {
+    return this.studentsService.findAll(user);
   }
 
   @ApiOperation({
@@ -49,8 +50,8 @@ export class StudentsController {
   })
   @ApiResponse({ type: StudentResponseDto, status: 200 })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.studentsService.findOne(id);
+  findOne(@Param('id') id: string, @GetUser() user: User) {
+    return this.studentsService.findOne(id, user);
   }
 
   @ApiOperation({
@@ -60,8 +61,12 @@ export class StudentsController {
   @ApiResponse({ type: StudentResponseDto, status: 200 })
   @Roles(['school_admin'])
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(id, updateStudentDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateStudentDto: UpdateStudentDto,
+    @GetUser() user: User,
+  ) {
+    return this.studentsService.update(id, updateStudentDto, user);
   }
 
   @ApiOperation({
@@ -70,7 +75,7 @@ export class StudentsController {
   })
   @Roles(['school_admin'])
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.studentsService.remove(id);
+  remove(@Param('id') id: string, @GetUser() user: User) {
+    return this.studentsService.remove(id, user);
   }
 }
