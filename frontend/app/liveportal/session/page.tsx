@@ -2,7 +2,9 @@
 import { Button } from "@/components/ui/button"
 import { BookOpen, Calendar, Ellipsis, ChevronRight, ChevronLeft, GraduationCap, Plus, Trash, UserCheck } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
 export default function session(){
+  const [activeTab, setActiveTab] = useState("Academic Sessions")
 
 
   const data = [
@@ -45,8 +47,10 @@ export default function session(){
         </div>
 
         <div className="flex gap-3 bg-zinc-200 w-[400px] rounded-md">
-            <Button variant="ghost">Academic Sessions (2)</Button>
-            <Button variant="secondary">School Terms (3)</Button>
+            <Button variant="ghost" onClick={() => setActiveTab("Academic Sessions")}
+              className={`${activeTab === "Academic Sessions"}`}
+              >Academic Sessions (2)</Button>
+            <Button variant="secondary" onClick={() => setActiveTab("School Terms")}>School Terms (3)</Button>
         </div>
         <Input type="search" placeholder="Search Sessions (e.g. 2024/2025)..." className="my-5 w-[400px]"/>
 
@@ -91,7 +95,7 @@ export default function session(){
         </div>
           </div>
          <div className="flex items-center justify-between mt-2 text-sm">
-        <p className="text-zinc-500">Showing 1 to {data.length} of {data.length} records</p>
+        <p className="text-zinc-500 text-xs">Showing 1 to {data.length} of {data.length} records</p>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="icon" className="h-8 w-8 border-zinc-300 disabled:opacity-40" disabled>
             <ChevronLeft className="h-4 w-4" />
