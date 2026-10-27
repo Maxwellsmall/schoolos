@@ -118,7 +118,7 @@ export default function Teacher() {
                     </div>
                   
 
-                    <div className="col-span-2 flex items-center gap-2.5">
+                    <div className="col-span-2  flex items-center gap-2.5">
                         <Trash className="w-4 h-4 text-red-600"/>
                         <span className="text-red-600 text-xs">{item.Actions}</span>
                     </div>
