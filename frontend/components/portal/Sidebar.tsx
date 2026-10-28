@@ -55,8 +55,8 @@ export default function Sidebar(){
                     <div className="gap-5">
                         <Link href="/liveportal/people">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer">
-                            <User2 />
-                            Students
+                        <User2 />
+                        Students
                     </Button> 
                     </Link>
 

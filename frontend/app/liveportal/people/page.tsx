@@ -79,7 +79,7 @@ export default function People() {
             Student Enrollment Register
           </h1>
           <p className="text-zinc-500 text-sm mt-1">
-              Comprehensive official student records, biological information, parent linkages, and portal login credentials.
+            Comprehensive official student records, biological information, parent linkages, and portal login credentials.
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -89,17 +89,6 @@ export default function People() {
         </div>
       </div>
 
-      <div className="flex gap-1 bg-zinc-100 p-1 w-fit rounded-lg mb-6 border border-zinc-200/60">
-        <Button variant="ghost" className="text-xs font-medium h-8 px-3 rounded-md text-zinc-600 hover:text-zinc-900">
-          Classrooms (6)
-        </Button>
-        <Button variant="ghost" className="text-xs font-medium h-8 px-3 rounded-md text-zinc-600 hover:text-zinc-900">
-          Class Levels (6)
-        </Button>
-        <Button variant="ghost" className="text-xs font-medium h-8 px-3 rounded-md text-zinc-600 hover:text-zinc-900">
-          Arms (6)
-        </Button>
-      </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="relative w-full sm:w-[380px]">
