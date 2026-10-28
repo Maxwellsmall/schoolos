@@ -1,11 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClassDto, ClassResponseDto, UpdateClassDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { User } from '../../generated/prisma';
 
 @Injectable()
 export class ClassService {
   constructor(private readonly prisma: PrismaService) {}
   async create(createClassDto: CreateClassDto): Promise<ClassResponseDto> {
+    // const school =  await this.prisma
     const {
       class: className,
       classArm,
@@ -29,8 +31,15 @@ export class ClassService {
     return createdClass;
   }
 
-  findAll() {
-    return `This action returns all class`;
+  async findAll(user: User): Promise<ClassResponseDto[]> {
+    const classes = await this.prisma.class.findMany({
+      where: { schoolId: user.schoolId },
+      include: { assignedStaff: { include: { user: true } } },
+    });
+    if (classes.length === 0)
+      throw new NotFoundException('No classes registered yet');
+
+    return classes;
   }
 
   findOne(id: number) {

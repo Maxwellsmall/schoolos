@@ -84,17 +84,18 @@ export class StudentsService {
       where: { user: { schoolId: user.schoolId } },
       include: { user: true },
     });
-    if (students.length)
+    if (students.length === 0)
       throw new NotFoundException('No students registered yet');
     return students;
   }
 
-  async findOne(id: string, user: User) {
+  async findOne(id: string, user: User): Promise<StudentResponseDto> {
     const student = await this.prisma.student.findUnique({
       where: { id, user: { schoolId: user.schoolId } },
+      include: { user: true },
     });
     if (!student) throw new NotFoundException('Student not found');
-    return `This action returns a #${id} student`;
+    return student;
   }
 
   async update(
@@ -131,8 +132,8 @@ export class StudentsService {
         dateOfBirth,
         gender,
         bloodGroup,
-        class: { connect: { id: classId } },
-        guardian: { connect: { id: guardianId } },
+        class: { update: { id: classId } },
+        guardian: { update: { id: guardianId } },
         user: {
           update: { firstName, lastName, email: loginEmail, passwordHash },
         },

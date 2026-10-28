@@ -13,8 +13,9 @@ import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import { JwtGuard, RolesGuard } from '../auth/guard';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { Roles } from '../auth/decorators';
+import { GetUser, Roles } from '../auth/decorators';
 import { ClassResponseDto } from './dto';
+import { type User } from '../../generated/prisma';
 
 @ApiBearerAuth()
 @UseGuards(JwtGuard, RolesGuard)
@@ -30,9 +31,12 @@ export class ClassController {
     return this.classService.create(createClassDto);
   }
 
+  @ApiOperation({ summary: 'Get all classes under your school' })
+  @ApiResponse({ type: [ClassResponseDto], status: 200 })
+  @Roles(['school_admin'])
   @Get()
-  findAll() {
-    return this.classService.findAll();
+  findAll(@GetUser() user: User) {
+    return this.classService.findAll(user);
   }
 
   @Get(':id')

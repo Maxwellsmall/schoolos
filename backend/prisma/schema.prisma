@@ -46,7 +46,7 @@ model User {
 
   role UserRole
 
-  school   School    @relation(fields: [schoolId], references: [id])
+  school   School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId String
   staff    Staff?
   student  Student?
@@ -67,9 +67,9 @@ model Class {
   classCapacity Int
 
   students      Student[]
-  assignedStaff Staff        @relation(fields: [staffId], references: [id])
+  assignedStaff Staff        @relation(fields: [staffId], references: [id], onDelete: Restrict)
   staffId       String
-  school        School       @relation(fields: [schoolId], references: [id])
+  school        School       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId      String
   attendances   Attendance[]
 
@@ -86,7 +86,7 @@ model Staff {
   phoneNumber String
 
   userId  String  @unique
-  user    User    @relation(fields: [userId], references: [id])
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   classes Class[]
 
   createdAt DateTime @default(now())
@@ -109,7 +109,7 @@ model Student {
   class       Class        @relation(fields: [classId], references: [id])
   classId     String
   userId      String       @unique
-  user        User         @relation(fields: [userId], references: [id])
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   attendances Attendance[]
 
   createdAt DateTime @default(now())
@@ -126,7 +126,7 @@ model Guardian {
 
   students Student[]
   userId   String    @unique
-  user     User      @relation(fields: [userId], references: [id])
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -142,7 +142,7 @@ model Announcement {
   targetAudience AnnouncementTargetAudience @default(whole_school)
   priority       AnnouncementPriority
 
-  school   School @relation(fields: [schoolId], references: [id])
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId String
 
   createdAt DateTime @default(now())
@@ -161,7 +161,7 @@ model Attendance {
   studentId String
   class     Class   @relation(fields: [classId], references: [id])
   classId   String
-  school    School  @relation(fields: [schoolId], references: [id])
+  school    School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId  String
 
   createdAt DateTime @default(now())
@@ -177,7 +177,7 @@ model AcademicSession {
   startData DateTime
   endData   DateTime
 
-  school   School @relation(fields: [schoolId], references: [id])
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId String
 
   academicTerms AcademicTerm[]
