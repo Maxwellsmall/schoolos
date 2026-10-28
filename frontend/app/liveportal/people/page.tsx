@@ -100,22 +100,43 @@ export default function People() {
           />
         </div>
         
-        <div className="flex items-center gap-2 text-sm text-zinc-600">
+      <div className="flex gap-2">
+          <div className="flex items-center gap-2 text-sm text-zinc-600">
           <span className="text-zinc-500">Class:</span>
-          <div className="flex items-center gap-1 px-3 py-1.5 bg-white border border-zinc-300 rounded-md shadow-2xs cursor-pointer hover:bg-zinc-50">
-            <span className="font-medium text-zinc-800 text-xs">All Classes</span>
-            <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
+          <div className="flex items-center gap-1 px-3 py-1 bg-white border border-zinc-300 rounded-md shadow-2xs cursor-pointer hover:bg-zinc-50">
+            <select name="" id="">
+              <option value="">All Classes</option>
+              <option value="">All Classes</option>
+              <option value="">All Classes</option>
+              <option value="">All Classes</option>
+            </select>
+          
+          </div>
+        </div>
+          <div className="flex items-center gap-2 text-sm text-zinc-600">
+          <span className="text-zinc-500">Status:</span>
+          <div className="flex items-center gap-1 px-3 py-1 bg-white border border-zinc-300 rounded-md shadow-2xs cursor-pointer hover:bg-zinc-50">
+            <select name="" id="">
+              <option value="">All Students</option>
+              <option value="">All Classes</option>
+              <option value="">All Classes</option>
+              <option value="">All Classes</option>
+            </select>
+          
           </div>
         </div>
       </div>
+      </div>
 
       <div className="w-full bg-white rounded-lg border border-zinc-200 shadow-2xs overflow-hidden">
-        <div className="grid grid-cols-12 bg-emerald-50/40 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
-          <div className="col-span-2">CODE</div>
-          <div className="col-span-3">SUBJECT TITLE</div>
-          <div className="col-span-2">CATEGORY</div>
-          <div className="col-span-4">TAUGHT AT LEVELS</div>
-          <div className="col-span-1 text-right">ACTIONS</div>
+        <div className="grid grid-cols-16 bg-emerald-50/40 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
+          <div className="col-span-2">ADM NO</div>
+          <div className="col-span-3">Student Name</div>
+          <div className="col-span-2">Classroom</div>
+          <div className="col-span-3">Portal Login Account</div>
+          <div className="col-span-2 text-right">Guardian</div>
+          <div className="col-span-2 text-right">Status</div>
+          <div className="col-span-2 text-right">Actions</div>
         </div>
 
         <div className="divide-y divide-zinc-200">
