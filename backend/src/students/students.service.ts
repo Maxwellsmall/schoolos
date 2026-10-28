@@ -31,12 +31,27 @@ export class StudentsService {
       schoolId,
       password,
     } = createStudentDto;
-    const school = await this.prisma.school.findFirst({
-      where: { id: schoolId, users: { some: { id: user.id } } },
-      select: { id: true },
-    });
+    const [school, guardian, studentClass] = await Promise.all([
+      this.prisma.school.findFirst({
+        where: {
+          id: schoolId,
+          users: { some: { staff: { userId: user.id } } },
+        },
+        select: { id: true },
+      }),
+      this.prisma.guardian.findFirst({
+        where: { id: guardianId, user: { schoolId } },
+        select: { id: true },
+      }),
+      this.prisma.class.findFirst({
+        where: { id: classId, schoolId },
+        select: { id: true },
+      }),
+    ]);
 
     if (!school) throw new NotFoundException('School not found');
+    if (!guardian) throw new NotFoundException('Guardian not found');
+    if (!studentClass) throw new NotFoundException('Class not found');
 
     const loginEmail =
       createStudentDto.loginEmail ||
@@ -148,7 +163,8 @@ export class StudentsService {
     });
     if (!student) throw new NotFoundException('Student not found');
 
-    await this.prisma.student.delete({ where: { id } });
+    await this.prisma.user.delete({ where: { id: student.userId } });
+
     return { messages: 'Student Details deleted' };
   }
 }

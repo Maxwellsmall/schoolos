@@ -27,8 +27,8 @@ export class ClassController {
   @ApiResponse({ type: ClassResponseDto, status: 201 })
   @Roles(['school_admin'])
   @Post()
-  create(@Body() createClassDto: CreateClassDto) {
-    return this.classService.create(createClassDto);
+  create(@Body() createClassDto: CreateClassDto, @GetUser() user: User) {
+    return this.classService.create(createClassDto, user);
   }
 
   @ApiOperation({ summary: 'Get all classes under your school' })

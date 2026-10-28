@@ -6,8 +6,10 @@ import { User } from '../../generated/prisma';
 @Injectable()
 export class ClassService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createClassDto: CreateClassDto): Promise<ClassResponseDto> {
-    // const school =  await this.prisma
+  async create(
+    createClassDto: CreateClassDto,
+    user: User,
+  ): Promise<ClassResponseDto> {
     const {
       class: className,
       classArm,
@@ -16,6 +18,18 @@ export class ClassService {
       schoolId,
       staffId,
     } = createClassDto;
+    const [school, staff] = await Promise.all([
+      this.prisma.school.findFirst({
+        where: {
+          id: schoolId,
+          users: { some: { staff: { userId: user.id } } },
+        },
+      }),
+      this.prisma.staff.findFirst({ where: { id: staffId } }),
+    ]);
+
+    if (!school) throw new NotFoundException('School not found');
+    if (!staff) throw new NotFoundException('Staff not found');
 
     const createdClass = await this.prisma.class.create({
       data: {

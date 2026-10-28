@@ -4,11 +4,15 @@ import { UpdateParentDto } from './dto/update-parent.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { hash } from 'argon2';
 import { GuardianResponseDto } from './dto';
+import { User } from '../../generated/prisma';
 
 @Injectable()
 export class ParentsService {
   constructor(private readonly prisma: PrismaService) {}
-  async create(createParentDto: CreateParentDto): Promise<GuardianResponseDto> {
+  async create(
+    createParentDto: CreateParentDto,
+    user: User,
+  ): Promise<GuardianResponseDto> {
     const {
       email,
       firstName,
@@ -18,9 +22,17 @@ export class ParentsService {
       password,
       schoolId,
     } = createParentDto;
-    const existingParent = await this.prisma.guardian.findFirst({
-      where: { user: { email: createParentDto.email } },
-    });
+    const [existingParent] = await Promise.all([
+      this.prisma.guardian.findFirst({
+        where: { user: { email: createParentDto.email } },
+      }),
+      this.prisma.school.findFirst({
+        where: {
+          id: schoolId,
+          users: { some: { staff: { userId: user.id } } },
+        },
+      }),
+    ]);
     if (existingParent)
       throw new ConflictException('Emails already in use, try another');
 
