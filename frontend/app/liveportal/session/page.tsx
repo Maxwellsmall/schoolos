@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { Calendar, Plus, Search } from "lucide-react"
+import { Calendar, Ellipsis, Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 export default function session(){
@@ -34,21 +34,37 @@ export default function session(){
         </div>
         <div className="">
             <div className="">
-                <div className="flex justify-between text-zinc-400 ">
+                <div className="grid grid-cols-5 text-zinc-400 ">
                     <p>SESSION NAME </p>
                     <p>START DATE</p>
                     <p>END DATE</p>
                     <p>STATUS</p>
                     <p>ACTIONS</p>
                 </div>
-                <div className="">
-                    <div className=" flex gap-2 items-center">
-                        <Calendar />
+                <div className="grid grid-cols-5 ">
+                    <div className=" flex gap-2 items-center w-[400px]">
+                        <Calendar size="10px" />
                     <p className="semibold">2023/2024 Academic Year</p>
                     </div>
-                    <p>11 sept 2023</p>
-                    <p>9 sept 2024</p>
+                    <p className="w-[300px]">11 sept 2023</p>
+                    <p className="w-[300px]">9 sept 2024</p>
+                    <p className="w-[300px]">archived/inactive</p>
+                    <button className="mr-0 w-[200px]">
+                        <Ellipsis />
+                    </button>
                     <p></p>
+                </div>
+                <div className="grid grid-cols-5 ">
+                    <div className=" flex gap-2 items-center w-[400px]">
+                        <Calendar size="10px" />
+                    <p className="semibold">2023/2024 Academic Year</p>
+                    </div>
+                    <p className="w-[300px]">11 sept 2023</p>
+                    <p className="w-[300px]">9 sept 2024</p>
+                    <p className="w-[300px]">archived/inactive</p>
+                    <button className="mr-0 w-[200px]">
+                        <Ellipsis />
+                    </button>
                     <p></p>
                 </div>
             </div>
