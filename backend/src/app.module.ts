@@ -8,7 +8,8 @@ import { SchoolsModule } from './schools/schools.module';
 import { UsersModule } from './users/users.module';
 import { ParentsModule } from './parents/parents.module';
 import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './auth/guard';
+import { ClassModule } from './class/class.module';
+import { StaffModule } from './staff/staff.module';
 
 @Module({
   imports: [
@@ -30,10 +31,11 @@ import { RolesGuard } from './auth/guard';
     UsersModule,
 
     ParentsModule,
+
+    ClassModule,
+
+    StaffModule,
   ],
-  providers: [
-    { provide: APP_GUARD, useClass: ThrottlerGuard },
-    // { provide: APP_GUARD, useClass: RolesGuard },
-  ],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
 export class AppModule {}

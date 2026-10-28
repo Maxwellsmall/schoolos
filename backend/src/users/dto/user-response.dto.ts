@@ -5,56 +5,21 @@ import {
   ApiProperty,
   getSchemaPath,
 } from '@nestjs/swagger';
-import {
-  $Enums,
-  Guardian,
-  Staff,
-  Student,
-  User,
-} from '../../../generated/prisma';
-
-export class StudentResponseDto implements Student {
-  @ApiProperty() id!: string;
-  @ApiProperty() admissionNumber!: string;
-  @ApiProperty() dateOfBirth!: Date;
-  @ApiProperty({ enum: $Enums.Gender }) gender!: $Enums.Gender;
-  @ApiProperty() bloodGroup!: string;
-  @ApiProperty() guardianModelId!: string;
-  @ApiProperty() classId!: string;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
-}
-
-export class StaffResponseDto implements Staff {
-  @ApiProperty() id!: string;
-  @ApiProperty() role!: string;
-  @ApiProperty() phoneNumber!: string;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
-}
-
-export class GuardianResponseDto implements Guardian {
-  @ApiProperty() id!: string;
-  @ApiProperty() phoneNumber!: string;
-  @ApiProperty({ enum: $Enums.GuardianRelationship })
-  relationship!: $Enums.GuardianRelationship;
-  @ApiProperty() userId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
-}
+import { $Enums, User } from '../../../generated/prisma';
+import { StudentBaseResponseDto } from '../../students/dto';
+import { GuardianBaseResponseDto } from '../../parents/dto';
+import { StaffBaseResponseDto } from '../../staff/dto';
 
 type UserRole = $Enums.UserRole;
-type StaffRole = 'teacher' | 'school_admin' | 'school_super_admin';
+type StaffRole = 'teacher' | 'school_admin';
 
 type UserBase = Omit<User, 'passwordHash' | 'role'>;
 type UserWith<R extends UserRole, P> = UserBase & { role: R } & P;
 
 export type UserResponse =
-  | UserWith<'student', { student: StudentResponseDto }>
-  | UserWith<StaffRole, { staff: StaffResponseDto }>
-  | UserWith<'parent', { guardian: GuardianResponseDto }>
+  | UserWith<'student', { student: StudentBaseResponseDto }>
+  | UserWith<StaffRole, { staff: StaffBaseResponseDto }>
+  | UserWith<'parent', { guardian: GuardianBaseResponseDto }>
   | UserWith<'root_admin', Record<never, never>>;
 
 export type UserResponseFor<R extends UserRole> = UserResponse extends infer V
@@ -66,13 +31,20 @@ export type UserResponseFor<R extends UserRole> = UserResponse extends infer V
   : never;
 
 export class UserBaseResponseDto implements UserBase {
-  @ApiProperty() id!: string;
-  @ApiProperty() firstName!: string;
-  @ApiProperty() lastName!: string;
-  @ApiProperty() email!: string;
-  @ApiProperty() schoolId!: string;
-  @ApiProperty() createdAt!: Date;
-  @ApiProperty() updatedAt!: Date;
+  @ApiProperty()
+  id!: string;
+  @ApiProperty()
+  firstName!: string;
+  @ApiProperty()
+  lastName!: string;
+  @ApiProperty()
+  email!: string;
+  @ApiProperty()
+  schoolId!: string;
+  @ApiProperty()
+  createdAt!: Date;
+  @ApiProperty()
+  updatedAt!: Date;
 }
 
 export class StudentUserResponseDto
@@ -80,16 +52,17 @@ export class StudentUserResponseDto
   implements UserResponseFor<'student'>
 {
   @ApiProperty({ enum: ['student'] }) role!: 'student';
-  @ApiProperty({ type: StudentResponseDto }) student!: StudentResponseDto;
+  @ApiProperty({ type: () => StudentBaseResponseDto })
+  student!: StudentBaseResponseDto;
 }
 
 export class StaffUserResponseDto
   extends UserBaseResponseDto
-  implements UserWith<StaffRole, { staff: StaffResponseDto }>
+  implements UserWith<StaffRole, { staff: StaffBaseResponseDto }>
 {
-  @ApiProperty({ enum: ['teacher', 'school_admin', 'school_super_admin'] })
+  @ApiProperty({ enum: ['teacher', 'school_admin'] })
   role!: StaffRole;
-  @ApiProperty({ type: StaffResponseDto }) staff!: StaffResponseDto;
+  @ApiProperty({ type: StaffBaseResponseDto }) staff!: StaffBaseResponseDto;
 }
 
 export class GuardianUserResponseDto
@@ -97,7 +70,8 @@ export class GuardianUserResponseDto
   implements UserResponseFor<'parent'>
 {
   @ApiProperty({ enum: ['parent'] }) role!: 'parent';
-  @ApiProperty({ type: GuardianResponseDto }) guardian!: GuardianResponseDto;
+  @ApiProperty({ type: GuardianBaseResponseDto })
+  guardian!: GuardianBaseResponseDto;
 }
 
 export class AdminUserResponseDto
@@ -109,7 +83,6 @@ export class AdminUserResponseDto
 
 const userModelByRole: Record<UserRole, Type<UserBaseResponseDto>> = {
   root_admin: AdminUserResponseDto,
-  school_super_admin: StaffUserResponseDto,
   school_admin: StaffUserResponseDto,
   teacher: StaffUserResponseDto,
   parent: GuardianUserResponseDto,

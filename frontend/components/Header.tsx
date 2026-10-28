@@ -21,19 +21,6 @@ export default function Header() {
     }
     return (
         <>
-        <div className="w-full flex items-center justify-between bg-blue-950 py-2 px-2 text-xs">
-            <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400"/>
-                <span className="text-white text-[14px]">SchoolOS Enterprise v2.4</span>
-                <span className="text-zinc-400 text-[14px]">· Multi-Campus Academic Year 2025/2026 Engine</span>
-            </div>
-              <div className="flex items-center gap-2">
-                <span className="text-zinc-400 text-[14px]">· 18 Campuses Live</span>
-                <span className="text-zinc-400 text-[14px]">· 12,450 Active Students</span>
-                <span className="text-white font-bold underline hover:text-green-300 hover:font-bold cursor-pointer h text-[14px]">Launch Portal Demo</span>
-            </div>
-            
-        </div>
         <header className="w-full px-4 py-2 bg-white z-50 border border-zinc-200 sticky top-0">
             <div className="w-full flex items-center justify-between">
                    <div className="flex items-center">
@@ -55,7 +42,7 @@ export default function Header() {
                 SchoolOs
               </h2>
               <p className="text-[12px] text-zinc-500/70 dark:text-zinc-400">
-                Multi-Campus Education Managemen
+                Multi-Campus Education Management
               </p>
             </div>
           </div>
@@ -64,52 +51,52 @@ export default function Header() {
                 <li 
                 className={
                   pathname === "/Architecture"
-                ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("Architecture")}>Campus Governance</li>
                 <li 
                 className={
                   pathname === "/Stakeholder Workspaces"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
                  }
                  onClick={() => scrollToSection("Stakeholder Workspaces")}
                  > Stakeholder Workspaces</li>
                 <li 
                 className={
                   pathname === "/Core Modules"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("Core Modules")}>Core Modules</li>
            
                 <li 
                 className={
                   pathname === "/Operations"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400  cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400  cursor-pointer"
               }
               onClick={() => scrollToSection("Operations")}>Operations</li>
                               <li 
                 className={
                   pathname === "/Campus"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
               }
               onClick={() => scrollToSection("Campus")}>Licensing</li>
                 <li 
                 className={
                   pathname === "/FAQ"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("FAQ")}>FAQ</li>
                  <li 
                 className={
                   pathname === "/Signin"
-                    ?  "text-[14px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
-                : "text-[14px] font-bold text-slate-400 cursor-pointer"
+                    ?  "text-[12px] font-semibold text-zinc-500 cursor-pointer hover:text-black hover:font-bold"
+                : "text-[12px] font-bold text-slate-400 cursor-pointer"
                 }
                 onClick={() => scrollToSection("Signin")}>Sign in</li>
             </ul>

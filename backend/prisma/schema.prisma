@@ -12,9 +12,200 @@ datasource db {
   provider = "postgresql"
 }
 
+model School {
+  id String @id @default(uuid())
+
+  name               String
+  motto              String
+  phoneNumber        String
+  email              String @unique
+  address            String
+  masterPasswordHash String
+
+  ministryAccreditationNumber String @unique
+
+  users            User[]
+  classes          Class[]
+  announcements    Announcement[]
+  attendances      Attendance[]
+  academicSessions AcademicSession[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("schools")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  firstName    String
+  lastName     String
+  email        String @unique
+  passwordHash String
+
+  role UserRole
+
+  school   School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId String
+  staff    Staff?
+  student  Student?
+  guardian Guardian?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Class {
+  id String @id @default(uuid())
+
+  class         StudentClasses
+  classArm      StudentClassArm
+  roomLocation  String
+  classCapacity Int
+
+  students      Student[]
+  assignedStaff Staff        @relation(fields: [staffId], references: [id], onDelete: Restrict)
+  staffId       String
+  school        School       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId      String
+  attendances   Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("classes")
+}
+
+model Staff {
+  id String @id @default(uuid())
+
+  role        String
+  phoneNumber String
+
+  userId  String  @unique
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  classes Class[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("staffs")
+}
+
+model Student {
+  id              String @id @default(uuid())
+  admissionNumber String @unique
+
+  dateOfBirth DateTime
+  gender      Gender
+  bloodGroup  String
+  address     String
+
+  guardian    Guardian     @relation(fields: [guardianId], references: [id])
+  guardianId  String
+  class       Class        @relation(fields: [classId], references: [id])
+  classId     String
+  userId      String       @unique
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attendances Attendance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("students")
+}
+
+model Guardian {
+  id String @id @default(uuid())
+
+  phoneNumber  String
+  relationship GuardianRelationship
+
+  students Student[]
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("guardians")
+}
+
+model Announcement {
+  id String @id @default(uuid())
+
+  title          String
+  content        String
+  targetAudience AnnouncementTargetAudience @default(whole_school)
+  priority       AnnouncementPriority
+
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model Attendance {
+  id String @id @default(uuid())
+
+  status AttendanceStatus
+  note   String?
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String
+  class     Class   @relation(fields: [classId], references: [id])
+  classId   String
+  school    School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("attendances")
+}
+
+model AcademicSession {
+  id String @id @default(uuid())
+
+  name      String
+  startData DateTime
+  endData   DateTime
+
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId String
+
+  academicTerms AcademicTerm[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("academicSessions")
+}
+
+model AcademicTerm {
+  id String @id @default(uuid())
+
+  name      String
+  startData DateTime
+  endData   DateTime
+
+  academicSession   AcademicSession @relation(fields: [academicSessionId], references: [id])
+  academicSessionId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("academicTerms")
+}
+
 enum UserRole {
   root_admin
-  school_super_admin
   school_admin
   teacher
   parent
@@ -81,193 +272,4 @@ enum AttendanceStatus {
   absent
   late
   excused
-}
-
-model School {
-  id String @id @default(uuid())
-
-  Name               String
-  motto              String
-  phoneNumber        String
-  email              String @unique
-  address            String
-  masterPasswordHash String
-
-  ministryAccreditationNumber String @unique
-
-  users            User[]
-  classes          Class[]
-  announcements    Announcement[]
-  attendances      Attendance[]
-  academicSessions AcademicSession[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("schools")
-}
-
-model User {
-  id String @id @default(uuid())
-
-  firstName    String
-  lastName     String
-  email        String @unique
-  passwordHash String
-
-  role UserRole
-
-  school   School    @relation(fields: [schoolId], references: [id])
-  schoolId String
-  staff    Staff?
-  student  Student?
-  guardian Guardian?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
-}
-
-model Class {
-  id String @id @default(uuid())
-
-  class         StudentClasses
-  classArm      StudentClassArm
-  roomLocation  String
-  classCapacity Int
-
-  students      Student[]
-  assignedStaff Staff?       @relation(fields: [staffId], references: [id])
-  staffId       String?
-  school        School       @relation(fields: [schoolId], references: [id])
-  schoolId      String
-  attendances   Attendance[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("classes")
-}
-
-model Staff {
-  id String @id @default(uuid())
-
-  role        String
-  phoneNumber String
-
-  userId  String  @unique
-  user    User    @relation(fields: [userId], references: [id])
-  classes Class[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Student {
-  id              String @id @default(uuid())
-  admissionNumber String @unique
-
-  dateOfBirth DateTime
-  gender      Gender
-  bloodGroup  String
-
-  guardianModel   Guardian     @relation(fields: [guardianModelId], references: [id])
-  guardianModelId String
-  class           Class        @relation(fields: [classId], references: [id])
-  classId         String
-  userId          String       @unique
-  user            User         @relation(fields: [userId], references: [id])
-  attendances     Attendance[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("students")
-}
-
-model Guardian {
-  id String @id @default(uuid())
-
-  phoneNumber  String
-  relationship GuardianRelationship
-
-  students Student[]
-  userId   String    @unique
-  user     User      @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("guardians")
-}
-
-model Announcement {
-  id String @id @default(uuid())
-
-  title          String
-  content        String
-  targetAudience AnnouncementTargetAudience @default(whole_school)
-  priority       AnnouncementPriority
-
-  school   School @relation(fields: [schoolId], references: [id])
-  schoolId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("announcements")
-}
-
-model Attendance {
-  id String @id @default(uuid())
-
-  status AttendanceStatus
-  note   String?
-
-  student   Student @relation(fields: [studentId], references: [id])
-  studentId String
-  class     Class   @relation(fields: [classId], references: [id])
-  classId   String
-  school    School  @relation(fields: [schoolId], references: [id])
-  schoolId  String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("attendances")
-}
-
-model AcademicSession {
-  id String @id @default(uuid())
-
-  name      String
-  startData DateTime
-  endData   DateTime
-
-  school   School @relation(fields: [schoolId], references: [id])
-  schoolId String
-
-  academicTerms AcademicTerm[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("academicSessions")
-}
-
-model AcademicTerm {
-  id String @id @default(uuid())
-
-  name      String
-  startData DateTime
-  endData   DateTime
-
-  academicSession   AcademicSession @relation(fields: [academicSessionId], references: [id])
-  academicSessionId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("academicTerms")
 }

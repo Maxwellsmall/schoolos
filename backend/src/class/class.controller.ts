@@ -1,0 +1,56 @@
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
+import { ClassService } from './class.service';
+import { CreateClassDto } from './dto/create-class.dto';
+import { UpdateClassDto } from './dto/update-class.dto';
+import { JwtGuard, RolesGuard } from '../auth/guard';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { GetUser, Roles } from '../auth/decorators';
+import { ClassResponseDto } from './dto';
+import { type User } from '../../generated/prisma';
+
+@ApiBearerAuth()
+@UseGuards(JwtGuard, RolesGuard)
+@Controller('class')
+export class ClassController {
+  constructor(private readonly classService: ClassService) {}
+
+  @ApiOperation({ summary: 'Create  a new class' })
+  @ApiResponse({ type: ClassResponseDto, status: 201 })
+  @Roles(['school_admin'])
+  @Post()
+  create(@Body() createClassDto: CreateClassDto) {
+    return this.classService.create(createClassDto);
+  }
+
+  @ApiOperation({ summary: 'Get all classes under your school' })
+  @ApiResponse({ type: [ClassResponseDto], status: 200 })
+  @Roles(['school_admin'])
+  @Get()
+  findAll(@GetUser() user: User) {
+    return this.classService.findAll(user);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.classService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
+    return this.classService.update(+id, updateClassDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.classService.remove(+id);
+  }
+}
