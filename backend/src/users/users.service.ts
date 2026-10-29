@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   async findOne(id: string, user: User) {
-    const userData = await this.prisma.user.findUniqueOrThrow({
+    const userData = await this.prisma.user.findUnique({
       where: { id, schoolId: user.schoolId },
       include: { guardian: true, staff: true, student: true },
     });
