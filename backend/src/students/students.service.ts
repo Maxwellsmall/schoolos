@@ -35,7 +35,7 @@ export class StudentsService {
       this.prisma.school.findFirst({
         where: {
           id: schoolId,
-          users: { some: { staff: { userId: user.id } } },
+          users: { some: { id: user.id } },
         },
         select: { id: true },
       }),

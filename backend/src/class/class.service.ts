@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClassDto, ClassResponseDto, UpdateClassDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../../generated/prisma';
+import { GeneralOkResponseDto } from '../common/dto';
 
 @Injectable()
 export class ClassService {
@@ -22,7 +23,7 @@ export class ClassService {
       this.prisma.school.findFirst({
         where: {
           id: schoolId,
-          users: { some: { staff: { userId: user.id } } },
+          users: { some: { id: user.id } },
         },
       }),
       this.prisma.staff.findFirst({ where: { id: staffId } }),
@@ -56,15 +57,55 @@ export class ClassService {
     return classes;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} class`;
+  async findOne(id: string, user: User): Promise<ClassResponseDto> {
+    const studentClass = await this.prisma.class.findFirst({
+      where: { id, schoolId: user.schoolId },
+      include: { assignedStaff: { include: { user: true } } },
+    });
+    if (!studentClass) throw new NotFoundException('Class not found');
+
+    return studentClass;
   }
 
-  update(id: number, updateClassDto: UpdateClassDto) {
-    return `This action updates a #${id} class`;
+  async update(
+    id: string,
+    updateClassDto: UpdateClassDto,
+    user: User,
+  ): Promise<ClassResponseDto> {
+    const {
+      class: className,
+      classArm,
+      classCapacity,
+      roomLocation,
+      staffId,
+    } = updateClassDto;
+    const studentClass = await this.prisma.class.findFirst({
+      where: { id, schoolId: user.schoolId },
+    });
+    if (!studentClass) throw new NotFoundException('Class not found');
+
+    return await this.prisma.class.update({
+      where: { id },
+      data: {
+        class: className,
+        classArm,
+        classCapacity,
+        roomLocation,
+        assignedStaff: { update: { id: staffId } },
+      },
+      include: { assignedStaff: { include: { user: true } } },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} class`;
+  async remove(id: string, user: User): Promise<GeneralOkResponseDto> {
+    const studentClass = await this.prisma.class.findFirst({
+      where: { id, schoolId: user.schoolId },
+    });
+
+    if (!studentClass) throw new NotFoundException('Class not found');
+
+    await this.prisma.class.delete({ where: { id } });
+
+    return { messages: 'Class deleted successfully' };
   }
 }

@@ -16,6 +16,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetUser, Roles } from '../auth/decorators';
 import { ClassResponseDto } from './dto';
 import { type User } from '../../generated/prisma';
+import { GeneralOkResponseDto } from '../common/dto';
 
 @ApiBearerAuth()
 @UseGuards(JwtGuard, RolesGuard)
@@ -39,18 +40,30 @@ export class ClassController {
     return this.classService.findAll(user);
   }
 
+  @ApiOperation({ summary: 'Get details of a particular class' })
+  @ApiResponse({ type: ClassResponseDto, status: 200 })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.classService.findOne(+id);
+  findOne(@Param('id') id: string, @GetUser() user: User) {
+    return this.classService.findOne(id, user);
   }
 
+  @ApiOperation({ summary: 'Update class details' })
+  @ApiResponse({ type: ClassResponseDto, status: 200 })
+  @Roles(['school_admin'])
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(+id, updateClassDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateClassDto: UpdateClassDto,
+    @GetUser() user: User,
+  ) {
+    return this.classService.update(id, updateClassDto, user);
   }
 
+  @ApiOperation({ summary: 'Delete class details' })
+  @ApiResponse({ type: GeneralOkResponseDto, status: 200 })
+  @Roles(['school_admin'])
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.classService.remove(+id);
+  remove(@Param('id') id: string, @GetUser() user: User) {
+    return this.classService.remove(id, user);
   }
 }
