@@ -1,76 +1,79 @@
 "use client"
+
+import React from "react"
 import { Button } from "@/components/ui/button"
-import { BookOpen, ChevronLeft, ChevronRight, Ellipsis, Plus, Search, ChevronDown } from "lucide-react"
+import { ChevronLeft, ChevronRight, Ellipsis, Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 export default function People() {
   const data = [
     {
-      code: "MTH 101",
-      name: "Mathematics",
-      category: "Core",
-      levels: ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"],
+      code: "ARA/2023/048",
+      name: "Chukwu, Oluwaseun David",
+      genderDob: "Male • DOB: 14 Apr 2011",
+      classroom: "JSS 2 Gold",
+      loginEmail: "student@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Dr. Emeka Chukwu",
+      status: "Active",
     },
     {
-      code: "ENG 101",
-      name: "English Language",
-      category: "Core",
-      levels: ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"],
+      code: "ARA/2023/049",
+      name: "Bello, Fatima Zahra",
+      genderDob: "Female • DOB: 22 Aug 2012",
+      classroom: "JSS 1 Diamond",
+      loginEmail: "fatima.bello@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Alhaji Kabir Bello",
+      status: "Active",
     },
     {
-      code: "BSC 101",
-      name: "Basic Science",
-      category: "Core",
-      levels: ["JSS 1", "JSS 2", "JSS 3"],
+      code: "ARA/2023/050",
+      name: "Okafor, Chinedu Emmanuel",
+      genderDob: "Male • DOB: 03 Nov 2010",
+      classroom: "JSS 3 Gold",
+      loginEmail: "chinedu.o@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Mrs. Nneka Okafor",
+      status: "Active",
     },
     {
-      code: "BTE 101",
-      name: "Basic Technology",
-      category: "Core",
-      levels: ["JSS 1", "JSS 2", "JSS 3"],
+      code: "ARA/2023/051",
+      name: "Adeyemi, Folake Mary",
+      genderDob: "Female • DOB: 18 Jan 2009",
+      classroom: "SSS 1 Science",
+      loginEmail: "folake.a@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Chief Tunde Adeyemi",
+      status: "Active",
     },
     {
-      code: "CVE 101",
-      name: "Civic Education",
-      category: "Core",
-      levels: ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"],
+      code: "ARA/2023/052",
+      name: "Danjuma, Ibrahim Sani",
+      genderDob: "Male • DOB: 09 May 2011",
+      classroom: "JSS 2 Diamond",
+      loginEmail: "ibrahim.d@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Mallam Sani Danjuma",
+      status: "Suspended",
     },
     {
-      code: "AGR 101",
-      name: "Agricultural Science",
-      category: "Vocational",
-      levels: ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2"],
-    },
-    {
-      code: "BUS 101",
-      name: "Business Studies",
-      category: "Vocational",
-      levels: ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2"],
-    },
-    {
-      code: "PHY 101",
-      name: "Physics",
-      category: "Science",
-      levels: ["SSS 1", "SSS 2", "SSS 3"],
-    },
-    {
-      code: "CHM 101",
-      name: "Chemistry",
-      category: "Science",
-      levels: ["SSS 1", "SSS 2", "SSS 3"],
-    },
-    {
-      code: "BIO 101",
-      name: "Biology",
-      category: "Science",
-      levels: ["SSS 1", "SSS 2", "SSS 3"],
+      code: "ARA/2022/012",
+      name: "Sowore, Temitope Samuel",
+      genderDob: "Male • DOB: 15 Dec 2008",
+      classroom: "SSS 2 Arts",
+      loginEmail: "temitope.s@apexroyal.sch.ng",
+      passwordHint: "Password: ••••••••",
+      guardian: "Engr. Olufemi Sowore",
+      status: "Archived",
     },
   ]
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="text-xs text-zinc-500 mb-2">
-        Academia <span className="mx-1">&gt;</span> Admin <span className="mx-1">&gt;</span> <span className="text-zinc-900 font-medium">Subjects</span>
+        Academia <span className="mx-1">&gt;</span> Admin <span className="mx-1">&gt;</span>{" "}
+        <span className="text-zinc-900 font-medium">Students &amp; Enrollment</span>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -89,82 +92,94 @@ export default function People() {
         </div>
       </div>
 
-
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="relative w-full sm:w-[380px]">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
-          <Input 
-            type="search" 
-            placeholder="Search subjects by name or code..." 
+          <Input
+            type="search"
+            placeholder="Search students by name or admission no..."
             className="pl-9 bg-white border-zinc-300 focus-visible:ring-zinc-400"
           />
         </div>
-        
-      <div className="flex gap-2">
+
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 text-sm text-zinc-600">
-          <span className="text-zinc-500">Class:</span>
-          <div className="flex items-center gap-1 px-3 py-1 bg-white border border-zinc-300 rounded-md shadow-2xs cursor-pointer hover:bg-zinc-50">
-            <select name="" id="">
+            <span className="text-zinc-500 text-xs font-medium">Class:</span>
+            <select className="px-3 py-1.5 bg-white border border-zinc-300 rounded-md text-xs font-medium text-zinc-800 shadow-2xs focus:outline-hidden cursor-pointer">
               <option value="">All Classes</option>
-              <option value="">All Classes</option>
-              <option value="">All Classes</option>
-              <option value="">All Classes</option>
+              <option value="JSS 1 Gold">JSS 1 Gold</option>
+              <option value="JSS 2 Gold">JSS 2 Gold</option>
+              <option value="SSS 1 Science">SSS 1 Science</option>
             </select>
-          
           </div>
-        </div>
+
           <div className="flex items-center gap-2 text-sm text-zinc-600">
-          <span className="text-zinc-500">Status:</span>
-          <div className="flex items-center gap-1 px-3 py-1 bg-white border border-zinc-300 rounded-md shadow-2xs cursor-pointer hover:bg-zinc-50">
-            <select name="" id="">
+            <span className="text-zinc-500 text-xs font-medium">Status:</span>
+            <select className="px-3 py-1.5 bg-white border border-zinc-300 rounded-md text-xs font-medium text-zinc-800 shadow-2xs focus:outline-hidden cursor-pointer">
               <option value="">All Students</option>
-              <option value="">All Classes</option>
-              <option value="">All Classes</option>
-              <option value="">All Classes</option>
+              <option value="Active">Active</option>
+              <option value="Suspended">Suspended</option>
+              <option value="Archived">Archived</option>
             </select>
-          
           </div>
         </div>
-      </div>
       </div>
 
       <div className="w-full bg-white rounded-lg border border-zinc-200 shadow-2xs overflow-hidden">
-        <div className="grid grid-cols-16 bg-emerald-50/40 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
+        <div className="grid grid-cols-12 bg-emerald-50/40 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
           <div className="col-span-2">ADM NO</div>
-          <div className="col-span-3">Student Name</div>
-          <div className="col-span-2">Classroom</div>
-          <div className="col-span-3">Portal Login Account</div>
-          <div className="col-span-2 text-right">Guardian</div>
-          <div className="col-span-2 text-right">Status</div>
-          <div className="col-span-2 text-right">Actions</div>
+          <div className="col-span-3">STUDENT NAME</div>
+          <div className="col-span-2">CLASSROOM</div>
+          <div className="col-span-2">PORTAL ACCOUNT</div>
+          <div className="col-span-2">GUARDIAN</div>
+          <div className="col-span-1 text-right">STATUS</div>
+          <div className="col-span-1 text-right">ACTIONS</div>
         </div>
 
         <div className="divide-y divide-zinc-200">
           {data.map((item, index) => (
-            <div key={index} className="grid grid-cols-12 items-center px-6 py-4 hover:bg-zinc-50/80 transition-colors">
+            <div
+              key={index}
+              className="grid grid-cols-12 items-center px-6 py-4 hover:bg-zinc-50/80 transition-colors"
+            >
               <div className="col-span-2">
                 <span className="inline-block px-2 py-1 bg-zinc-100 border border-zinc-200 text-zinc-800 rounded text-xs font-mono font-bold">
                   {item.code}
                 </span>
               </div>
 
-              <div className="col-span-3 flex items-center gap-2.5">
-                <BookOpen className="w-4 h-4 text-zinc-600" />
-                <span className="font-semibold text-sm text-zinc-900">{item.name}</span>
+              <div className="col-span-3 flex flex-col">
+                <span className="font-semibold text-xs text-zinc-900">{item.name}</span>
+                <span className="font-normal text-[11px] text-zinc-500 mt-0.5">{item.genderDob}</span>
               </div>
 
               <div className="col-span-2">
-                <span className="inline-block px-2.5 py-1 bg-zinc-900 text-white rounded-md text-xs font-medium">
-                  {item.category}
+                <span className="inline-block px-2 py-0.5 bg-zinc-100 text-zinc-700 border border-zinc-200 rounded text-[11px] font-medium">
+                  {item.classroom}
                 </span>
               </div>
 
-              <div className="col-span-4 flex flex-wrap gap-1.5">
-                {item.levels.map((lvl, idx) => (
-                  <span key={idx} className="px-1.5 py-0.5 bg-zinc-100 text-zinc-600 border border-zinc-200 rounded text-[11px] font-medium">
-                    {lvl}
-                  </span>
-                ))}
+              <div className="col-span-2 flex flex-col">
+                <span className="font-medium text-xs text-zinc-800 truncate">{item.loginEmail}</span>
+                <span className="font-normal text-[11px] text-zinc-400 mt-0.5">{item.passwordHint}</span>
+              </div>
+
+              <div className="col-span-2 flex flex-col">
+                <span className="font-medium text-xs text-zinc-800">{item.guardian}</span>
+              </div>
+
+              <div className="col-span-1 flex justify-end">
+                <span
+                  className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${
+                    item.status === "Active"
+                      ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                      : item.status === "Suspended"
+                      ? "bg-amber-100 text-amber-800 border border-amber-200"
+                      : "bg-zinc-100 text-zinc-600 border border-zinc-200"
+                  }`}
+                >
+                  {item.status}
+                </span>
               </div>
 
               <div className="col-span-1 flex justify-end">
@@ -178,7 +193,9 @@ export default function People() {
       </div>
 
       <div className="flex items-center justify-between mt-6 text-sm">
-        <p className="text-zinc-500">Showing 1 to {data.length} of {data.length} records</p>
+        <p className="text-zinc-500 text-xs">
+          Showing 1 to {data.length} of {data.length} records
+        </p>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="icon" className="h-8 w-8 border-zinc-300 disabled:opacity-40" disabled>
             <ChevronLeft className="h-4 w-4" />
