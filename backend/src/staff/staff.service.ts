@@ -9,6 +9,7 @@ import { type User } from '../../generated/prisma';
 import { PrismaService } from '../prisma/prisma.service';
 import { hash } from 'argon2';
 import { StaffResponseDto } from './dto';
+import { GeneralOkResponseDto } from '../common/dto';
 
 @Injectable()
 export class StaffService {
@@ -29,8 +30,12 @@ export class StaffService {
     const [school, existingUser] = await Promise.all([
       this.prima.school.findFirst({
         where: { id: schoolId, users: { some: { id: user.id } } },
+        select: { id: true },
       }),
-      this.prima.user.findFirst({ where: { email: loginEmail } }),
+      this.prima.user.findFirst({
+        where: { email: loginEmail },
+        select: { id: true },
+      }),
     ]);
 
     if (!school) throw new NotFoundException('School not found');
@@ -80,11 +85,44 @@ export class StaffService {
     return staff;
   }
 
-  update(id: number, updateStaffDto: UpdateStaffDto) {
-    return `This action updates a #${id} staff`;
+  async update(
+    id: string,
+    updateStaffDto: UpdateStaffDto,
+    user: User,
+  ): Promise<StaffResponseDto> {
+    const { firstName, lastName, loginEmail, password, phoneNumber, role } =
+      updateStaffDto;
+
+    const staff = await this.prima.staff.findUnique({
+      where: { id, user: { schoolId: user.schoolId } },
+      select: { id: true },
+    });
+
+    if (!staff) throw new NotFoundException('Staff  not found');
+
+    const passwordHash = password ? await hash(password) : undefined;
+
+    return await this.prima.staff.update({
+      where: { id },
+      data: {
+        phoneNumber,
+        role,
+        user: {
+          update: { firstName, lastName, email: loginEmail, passwordHash },
+        },
+      },
+      include: { user: true },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} staff`;
+  async remove(id: string, user: User): Promise<GeneralOkResponseDto> {
+    const staff = await this.prima.staff.findUnique({
+      where: { id, user: { schoolId: user.schoolId } },
+    });
+    if (!staff) throw new NotFoundException('Staff not found');
+
+    await this.prima.user.delete({ where: { id: staff.userId } });
+
+    return { messages: 'Staff data deleted successfully' };
   }
 }
