@@ -60,6 +60,13 @@ export default function Sidebar(){
                     </Button> 
                     </Link>
 
+                    <Link href="/liveportal/guardians">
+                    <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer">
+                        <User2 />
+                        Guardians
+                    </Button> 
+                    </Link>
+
                     </div>
                 </div>
                 <div className="flex absolute bottom-0 p-2 gap-3 items-center jusrify-start self-start">
