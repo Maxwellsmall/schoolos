@@ -1,6 +1,6 @@
 "use ckient"
 import { Button } from "../ui/button"
-import { BookOpen, Building2, GraduationCap, LayoutDashboard, User2, UserCheck, UserCircle } from "lucide-react"
+import { BookOpen, Building2, Church, GraduationCap, LayoutDashboard, User2, UserCheck, UserCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function Sidebar(){
@@ -64,6 +64,13 @@ export default function Sidebar(){
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer">
                         <User2 />
                         Guardians
+                    </Button> 
+                    </Link>
+
+                        <Link href="/liveportal/staff">
+                    <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer">
+                        <Church />
+                        Staff Dictionary
                     </Button> 
                     </Link>
 

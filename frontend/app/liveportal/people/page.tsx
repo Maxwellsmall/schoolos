@@ -94,7 +94,7 @@ export default function People() {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="relative w-full sm:w-[380px]">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-1 h-4 w-4 text-zinc-400" />
           <Input
             type="search"
             placeholder="Search students by name or admission no..."
@@ -154,7 +154,7 @@ export default function People() {
               </div>
 
               <div className="col-span-2 pr-2">
-                <span className="inline-block px-2 py-0.5 bg-zinc-100 text-zinc-700 border border-zinc-200 rounded text-[11px] font-medium whitespace-nowrap">
+                <span className="inline-block px-2 py-0.5 bg-zinc-100 text-zinc-700 border border-zinc-200 rounded text-[13px] font-medium">
                   {item.classroom}
                 </span>
               </div>
