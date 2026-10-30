@@ -29,6 +29,7 @@ model School {
   announcements    Announcement[]
   attendances      Attendance[]
   academicSessions AcademicSession[]
+  subjects         Subject[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -92,7 +93,9 @@ model Subject {
   title    String
   category SubjectCategory @default(core)
 
-  classes Class[]
+  school   School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId String
+  classes  Class[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
