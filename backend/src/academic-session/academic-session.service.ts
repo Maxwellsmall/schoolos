@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { User } from '../../generated/prisma';
 import { PrismaService } from '../prisma/prisma.service';
 import {
@@ -6,6 +10,7 @@ import {
   UpdateAcademicSessionDto,
   AcademicSessionResponseDto,
 } from './dto';
+import { GeneralOkResponseDto } from '../common/dto';
 
 @Injectable()
 export class AcademicSessionService {
@@ -73,12 +78,35 @@ export class AcademicSessionService {
     if (!academicSession)
       throw new NotFoundException('Academic session not found');
 
-    if (status && academicSession.status === status) return academicSession;
+    if (!status) return academicSession;
 
-    return await this.prisma.$transaction(async (tx) => {});
+    if (academicSession.status === status) return academicSession;
+
+    if (status !== 'active')
+      throw new BadRequestException(
+        'You can only make an academic session active',
+      );
+
+    return await this.prisma.$transaction(async (tx) => {
+      await tx.academicSession.updateMany({
+        where: { schoolId: user.schoolId },
+        data: { status: 'inactive' },
+      });
+      return tx.academicSession.update({
+        where: { id },
+        data: { status: 'active' },
+      });
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} academicSession`;
+  async remove(id: string, user: User): Promise<GeneralOkResponseDto> {
+    const academicSession = await this.prisma.academicSession.findUnique({
+      where: { id, schoolId: user.schoolId },
+    });
+    if (!academicSession)
+      throw new NotFoundException('Academic session not found');
+
+    await this.prisma.academicSession.delete({ where: { id } });
+    return { messages: 'Academic session deleted successfully' };
   }
 }
