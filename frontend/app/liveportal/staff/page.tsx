@@ -137,9 +137,9 @@ export default function Staff() {
                 <div className="col-span-2 pl-10">STAFF NAME &amp; DESIGNATION</div>
                 <div className="col-span-1 pl-4">CATEGORY</div>
                 <div className="col-span-3 pl-15">ACADEMIC CREDENTIALS</div>
-                <div className="col-span-1 pl-10">CONTACT</div>
-                <div className="col-span-1 pl-10 ">STATUS</div>
-                <div className="col-span-1 pl-10 ">ACTIONS</div>
+                <div className="col-span-2 pl-10">CONTACT</div>
+                <div className="col-span-1 pl-20 ">STATUS</div>
+                <div className="col-span-1 pl-25 ">ACTIONS</div>
             </div>
 
             <div className="divide-y divide-zinc-200">
@@ -169,12 +169,12 @@ export default function Staff() {
                                 <span className="text-zinc-500 text-xs">{item.academic}</span>
                             </div>
 
-                                <div className="col-span-1 flex flex-col gap-1 pr-2">
-                                <span className="text-zinc-700 text-[10px] flex items-center gap-2">
+                            <div className="col-span-2 flex flex-col gap-1 pr-2">
+                                <span className="text-zinc-700 text-[8px] flex items-center gap-2">
                                 <Phone className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                                 {item.contact}
                                 </span>
-                                <span className="text-zinc-700 text-[10px] flex items-center gap-2">
+                                <span className="text-zinc-700 text-[8px] flex items-center gap-2">
                                 <Mail className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                                 {item.email}
                                 </span>
