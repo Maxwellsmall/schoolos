@@ -78,9 +78,7 @@ export class AcademicSessionService {
     if (!academicSession)
       throw new NotFoundException('Academic session not found');
 
-    if (!status) return academicSession;
-
-    if (academicSession.status === status) return academicSession;
+    if (!status || academicSession.status === status) return academicSession;
 
     if (status !== 'active')
       throw new BadRequestException(
@@ -105,6 +103,11 @@ export class AcademicSessionService {
     });
     if (!academicSession)
       throw new NotFoundException('Academic session not found');
+
+    if (academicSession.status === 'active')
+      throw new BadRequestException(
+        "You can't delete an academic session that is active",
+      );
 
     await this.prisma.academicSession.delete({ where: { id } });
     return { messages: 'Academic session deleted successfully' };

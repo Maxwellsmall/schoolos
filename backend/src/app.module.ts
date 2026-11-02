@@ -8,11 +8,12 @@ import { SchoolsModule } from './schools/schools.module';
 import { UsersModule } from './users/users.module';
 import { ParentsModule } from './parents/parents.module';
 import { APP_GUARD } from '@nestjs/core';
-import { ClassModule } from './class/class.module';
-import { StaffModule } from './staff/staff.module';
-import { SubjectModule } from './subject/subject.module';
+import { ClassModule } from './classes/classes.module';
+import { StaffModule } from './staffs/staffs.module';
+import { SubjectModule } from './subjects/subjects.module';
 import { AcademicSessionModule } from './academic-session/academic-session.module';
 import { AcademicTermModule } from './academic-term/academic-term.module';
+import { AnnouncementsModule } from './announcements/announcements.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AcademicTermModule } from './academic-term/academic-term.module';
     SubjectModule,
     AcademicSessionModule,
     AcademicTermModule,
+    AnnouncementsModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
