@@ -17,6 +17,67 @@ export default function Staff() {
       contact: "+234 802 119 4432",
       email: "teacher@apexroyal.sch.ng"
     },
+      {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+     {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+     {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+     {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+     {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+     {
+      code: "STF/2021/014",
+      name: "Adeyemi, Folashade",
+      genderDob: "Senior Mathematics Mistrcategory",
+      category: "Teaching",
+      academic: "B.Sc. Ed Mathematics (Unilag)",
+      status: "Active",
+      contact: "+234 802 119 4432",
+      email: "teacher@apexroyal.sch.ng"
+    },
+    
     
   
   
@@ -131,6 +192,7 @@ export default function Staff() {
                                 >
                                 {item.status}
                                 </span>
+
                             </div>
 
                              <div className="col-span-1 flex justify-end">
