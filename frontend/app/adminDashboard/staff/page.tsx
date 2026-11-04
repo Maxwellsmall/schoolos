@@ -132,14 +132,14 @@ export default function Staff() {
     </div>
 
         <div className="w-full bg-white rounded-lg border border-zinc-200 shadow-2xs overflow-hidden">
-            <div className="grid grid-cols-12 items-center bg-emerald-50/40 px-6 py-1 border-b border-zinc-200 text-xs font-semibold text-zinc-500/80 tracking-wider">
-                <div className="col-span-1">STAFF ID </div>
-                <div className="col-span-2 pl-10">STAFF NAME &amp; DESIGNATION</div>
-                <div className="col-span-1 pl-4">CATEGORY</div>
-                <div className="col-span-3 pl-15">ACADEMIC CREDENTIALS</div>
-                <div className="col-span-2 pl-10">CONTACT</div>
-                <div className="col-span-1 pl-20 ">STATUS</div>
-                <div className="col-span-1 pl-25 ">ACTIONS</div>
+            <div className="grid grid-cols-12 items-center hover:bg-zinc-100/50 bg-emerald-50/20 px-6 py-1 border-b border-zinc-200 text-xs font-semibold text-zinc-500/80 tracking-wider">
+                <div className="col-span-1 text-zinc-400">STAFF ID </div>
+                <div className="col-span-2 text-zinc-400 pl-10">STAFF NAME &amp; DESIGNATION</div>
+                <div className="col-span-1 text-zinc-400 pl-4">CATEGORY</div>
+                <div className="col-span-3 text-zinc-400 pl-15">ACADEMIC CREDENTIALS</div>
+                <div className="col-span-2 text-zinc-400 pl-10">CONTACT</div>
+                <div className="col-span-1 text-zinc-400 pl-20 ">STATUS</div>
+                <div className="col-span-1 text-zinc-400 pl-25 ">ACTIONS</div>
             </div>
 
             <div className="divide-y divide-zinc-200">

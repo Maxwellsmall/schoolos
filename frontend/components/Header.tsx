@@ -105,7 +105,7 @@ export default function Header() {
                 <Button className="bg-white cursor-pointer border border-zinc-200 hover:bg-zinc-100 text-black">
                     Register School
                 </Button>
-                <Link href="/liveportal">
+                <Link href="/adminDashboard">
                  <Button className="cursor-pointer">
                     <span>
                     Enter Live Portal 

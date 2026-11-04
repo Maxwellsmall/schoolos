@@ -121,12 +121,12 @@ export default function Subject() {
       </div>
 
       <div className="w-full bg-white rounded-lg border border-zinc-200 shadow-2xs overflow-hidden">
-        <div className="grid grid-cols-12 bg-emerald-50/40 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
-          <div className="col-span-2">CODE</div>
-          <div className="col-span-3">SUBJECT TITLE</div>
-          <div className="col-span-2">CATEGORY</div>
-          <div className="col-span-4">TAUGHT AT LEVELS</div>
-          <div className="col-span-1 text-right">ACTIONS</div>
+        <div className="grid grid-cols-12 hover:bg-zinc-100/50 bg-emerald-50/20 px-6 py-3 border-b border-zinc-200 text-xs font-semibold text-emerald-800/80 tracking-wider">
+          <div className="col-span-2 text-zinc-400">CODE</div>
+          <div className="col-span-3 text-zinc-400">SUBJECT TITLE</div>
+          <div className="col-span-2 text-zinc-400">CATEGORY</div>
+          <div className="col-span-4 text-zinc-400">TAUGHT AT LEVELS</div>
+          <div className="col-span-1 text-zinc-400 text-right">ACTIONS</div>
         </div>
 
         <div className="divide-y divide-zinc-200">

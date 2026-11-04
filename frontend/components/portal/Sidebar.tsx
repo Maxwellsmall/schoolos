@@ -17,7 +17,7 @@ export default function Sidebar(){
             <div className="m-5">
                 <p className="text-xs tracking-wider mb-2 font-semibold text-slate-400/80">OVERVIEW</p>
                 <div className="gap-2">
-                    <Link href={"/liveportal"}>
+                    <Link href={"/adminDashboard"}>
                     <Button variant={"selected"} className="flex justify-start gap-2 items-center px-5 bg-black w-full">
                             <LayoutDashboard />
                             Dashboard
@@ -25,26 +25,26 @@ export default function Sidebar(){
                     </Link>
                     <p className="text-xs tracking-wider mt-5 text-slate-400/80 font-semibold">ACADEMIC STRUCTURE</p>
                     <div className="gap-5">
-                        <Link href="/liveportal/session">
+                        <Link href="/adminDashboard/session">
                     <Button variant={"ghost"} className="flex justify-around text-slate-600/90 items-center px-5 cursor-pointer">
                             <Building2 />
                             session and Terms
                     </Button> 
                     </Link>
 
-                    <Link href="/liveportal/classes">
+                    <Link href="/adminDashboard/classes">
                     <Button variant={"ghost"} className="flex justify-around text-slate-600/90 items-center px-5 cursor-pointer">
                             <GraduationCap />
                            Classes & Arms
                     </Button> 
                     </Link>
-                       <Link href="/liveportal/subject">
+                       <Link href="/adminDashboard/subject">
                     <Button variant={"ghost"} className="flex justify-around text-slate-600/90 items-center px-5 cursor-pointer">
                             <BookOpen />
                            Subjects
                     </Button> 
                     </Link>
-                      <Link href="/liveportal/teacher">
+                      <Link href="/adminDashboard/teacher">
                     <Button variant={"ghost"} className="flex justify-around text-slate-600/90 items-center px-5 cursor-pointer">
                             <UserCheck />
                            Teacher Assignments
@@ -53,21 +53,21 @@ export default function Sidebar(){
                     </div>
                      <p className="text-xs tracking-wider mt-5  text-slate-400/80 font-semibold">PEOPLE</p>
                     <div className="gap-5">
-                        <Link href="/liveportal/people">
+                        <Link href="/adminDashboard/people">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 text-slate-600/90 cursor-pointer">
                         <User2 />
                         Students
                     </Button> 
                     </Link>
 
-                    <Link href="/liveportal/guardians">
+                    <Link href="/adminDashboard/guardians">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 text-slate-600/90 cursor-pointer">
                         <User2 />
                         Guardians
                     </Button> 
                     </Link>
 
-                        <Link href="/liveportal/staff">
+                        <Link href="/adminDashboard/staff">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 text-slate-600/90 cursor-pointer">
                         <Church />
                         Staff Dictionary
@@ -79,14 +79,14 @@ export default function Sidebar(){
                      <p className="text-xs tracking-wider mt-5 text-slate-400/80 font-bold">ACADEMICS ATTENDANCE</p>
 
                     <div className="gap-5 mt-2">
-                        <Link href="/liveportal/attendance">
+                        <Link href="/adminDashboard/attendance">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer text-slate-600/90">
                         <ClipboardCheck />
                         Attendance Summary
                     </Button> 
                     </Link>
 
-                    <Link href="/liveportal/guardians">
+                    <Link href="/adminDashboard/scores">
                     <Button variant={"ghost"} className="flex justify-around items-center px-5 cursor-pointer text-slate-600/90">
                         <Award />
                         Scores & Grading

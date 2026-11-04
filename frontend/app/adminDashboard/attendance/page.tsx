@@ -64,6 +64,55 @@ export default function Attendance() {
       actionIcon: <EyeIcon className="w-3 h-3"/>
 
     },
+      {
+      classroomArm: "JSS 2 Gold",
+      enrolled: "4 students",
+      present: "4",
+      absent: "0",
+      lateArrivals: "0",
+      rate: "100%",
+      rateStatus: "Active",
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
+
+    },
+    {
+      classroomArm: "JSS 2 Diamond",
+      enrolled: "29 students",
+      present: "0",
+      absent: "0",
+      lateArrivals: "0",
+      rate: "0%",
+      rateStatus: "Not Active",
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
+
+    },
+        {
+      classroomArm: "SSS 1 Science",
+      enrolled: "1 students",
+      present: "0",
+      absent: "0",
+      lateArrivals: "0",
+      rate: "100%",
+      rateStatus: "Not Active",
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
+
+    },
+    {
+      classroomArm: "SSS 2 Science",
+      enrolled: "25 students",
+      present: "0",
+      absent: "0",
+      lateArrivals: "0",
+      rate: "0%",
+      rateStatus: "Not Active",
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
+
+    },
+
   ]
 
   return (
@@ -192,7 +241,22 @@ export default function Attendance() {
 
                 </div>
 
-              </div>
+        </div>
+
+        <div>
+      <div className="flex items-center justify-between mt-6 text-sm">
+        <p className="text-zinc-500">Showing 1 to {studentData.length} of {studentData.length} records</p>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" size="icon" className="h-8 w-8 border-zinc-300 disabled:opacity-40" disabled>
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <span className="text-zinc-600 font-medium text-xs">Page 1 of 1</span>
+          <Button variant="outline" size="icon" className="h-8 w-8 border-zinc-300 disabled:opacity-40" disabled>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+        </div>
     </div>
   )
 }
