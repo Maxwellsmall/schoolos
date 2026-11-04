@@ -48,8 +48,20 @@ export default function Attendance() {
       lateArrivals: "0",
       rate: "0%",
       rateStatus: "Not Active",
-      actions: "View roll call",
-      actionIcon: <EyeIcon className="w-4 h-4"/>
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
+
+    },
+    {
+      classroomArm: "JSS 1 Diamond",
+      enrolled: "28 students",
+      present: "0",
+      absent: "0",
+      lateArrivals: "0",
+      rate: "0%",
+      rateStatus: "Not Active",
+      actions: "View Roll Call",
+      actionIcon: <EyeIcon className="w-3 h-3"/>
 
     },
   ]
@@ -148,20 +160,29 @@ export default function Attendance() {
                         </span>
                       </div>
 
-                      <div className="col-span-2 flex pr-2">
-                        <span className="font-medium text-xs text-zinc-900">
+                      <div className="col-span-2 flex gap-2 py-[2px]">
+                        <span className="text-xs text-zinc-900 font-bold">
                           {item.rate}
                         </span>
                         <span
-                        className={`inline-block px-2 py-0.5 ${
+                        className={`inline-block px-2 gap-2 ${
                           item.rateStatus === "Not active"
-                          ? "bg-emerald-600 rounded-full py-1 max-w-[50px]"
-                          : "bg-zinc-200 rounded-full py-1 max-w-[70px]"
+                          ? "bg-zinc-200 rounded-full w-[80px]"
+                          : item.rateStatus === "Active" 
+                          ?  "bg-emerald-600 rounded-full w-[80px]"
+                          :  "bg-zinc-200 rounded-full w-[80px]"
 
                         }`}
                         >
 
                         </span>
+                      </div>
+
+                      <div className="col-span-1">
+                        <Button className="bg-white border border-zinc-200 rounded-md hover:bg-zinc-100">
+                          <span className="text-black">{item.actionIcon}</span>
+                          <span className="text-black text-[12px]">{item.actions}</span>
+                        </Button>
                       </div>
 
                     </div>
